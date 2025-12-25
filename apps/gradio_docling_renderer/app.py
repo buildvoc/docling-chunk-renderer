@@ -16,6 +16,16 @@ Annif Projects (STATIC):
 - No API calls
 - Dropdown populated from hard-coded list
 - Labels normalized to ASCII to avoid � replacement chars
+
+Phase 4
+- Step 1: Annif suggest client wrapper
+- Step 2: limit/threshold controls
+- Step 3: suggest selected chunk (display in UI)
+- Step 4: suggest ALL chunks (or selected chunks)
+
+Fix:
+- Robust JSON loading for files with trailing junk (JSONDecodeError: Extra data)
+- Annif suggest uses formData + correct /v1 base URL
 """
 
 from __future__ import annotations
@@ -29,11 +39,32 @@ from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 import gradio as gr
+import requests
 
 try:
     from PIL import Image
 except Exception:  # pragma: no cover
     Image = None  # type: ignore
+
+
+# ============================================================
+# Robust JSON loader (FIX: handles JSONDecodeError: Extra data)
+# ============================================================
+def load_json_robust(path: str) -> Any:
+    """
+    Try strict JSON first.
+    If the file contains extra trailing data after a valid JSON object,
+    parse only the first JSON object and ignore the rest.
+    """
+    with open(path, "r", encoding="utf-8") as f:
+        raw = f.read()
+
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        dec = json.JSONDecoder()
+        obj, _end = dec.raw_decode(raw.lstrip())
+        return obj
 
 
 # ============================================================
@@ -135,6 +166,75 @@ def annif_project_id_from_choice(choice: str) -> Optional[str]:
     if not isinstance(choice, str) or not choice.strip():
         return None
     return choice.split(ANNIF_SEP, 1)[0].strip()
+
+
+# ============================================================
+# Phase 4  Annif suggest client wrapper
+# ============================================================
+# FIX: correct /v1 base
+ANNIF_BASE_URL = "https://text-analytics.buildvoc.co.uk/v1"
+ANNIF_TIMEOUT = 10.0
+
+
+def annif_suggest(
+    project_id: str,
+    text: str,
+    limit: int = 10,
+    threshold: float = 0.0,
+) -> List[Dict[str, Any]]:
+    """
+    Safe wrapper for POST /projects/{project_id}/suggest.
+
+    Swagger says inputs are formData:
+      text (required), limit (int), threshold (double)
+
+    Returns:
+      [{"label": str, "score": float, "notation": str|None, "uri": str|None}, ...]
+
+    Never raises; returns [] on 404 / 503 / network / JSON issues.
+    """
+    if not project_id or not text or not text.strip():
+        return []
+
+    url = f"{ANNIF_BASE_URL}/projects/{project_id}/suggest"
+
+    # FIX: send formData (application/x-www-form-urlencoded), not JSON
+    form = {"text": text, "limit": int(limit), "threshold": float(threshold)}
+
+    try:
+        r = requests.post(
+            url,
+            data=form,
+            headers={"Accept": "application/json"},
+            timeout=ANNIF_TIMEOUT,
+        )
+        if r.status_code in (404, 503):
+            return []
+        r.raise_for_status()
+        data = r.json()
+    except Exception:
+        return []
+
+    results = data.get("results")
+    if not isinstance(results, list):
+        return []
+
+    out: List[Dict[str, Any]] = []
+    for it in results:
+        if not isinstance(it, dict):
+            continue
+        label = it.get("label")
+        score = it.get("score")
+        if isinstance(label, str) and isinstance(score, (int, float)):
+            out.append(
+                {
+                    "label": label,
+                    "score": float(score),
+                    "notation": it.get("notation"),
+                    "uri": it.get("uri"),
+                }
+            )
+    return out
 
 
 # ============================================================
@@ -258,10 +358,6 @@ def _format_conf(v: Any) -> str:
 
 
 def picture_properties_html(doc_json: Dict[str, Any], pic_ref: str) -> str:
-    """
-    Render picture classification + description if present.
-    Accepts several common keys (defensive).
-    """
     pics = doc_json.get("pictures")
     if not isinstance(pics, list):
         return ""
@@ -362,7 +458,6 @@ def extract_render_items(doc_json: Any, max_items: int) -> List[RenderItem]:
             )
         return items
 
-    # Fallback scan for other exports
     for key in ("body", "furniture", "pictures", "tables", "key_value_items", "form_items"):
         arr = doc_json.get(key)
         if not isinstance(arr, list):
@@ -448,7 +543,13 @@ def build_section_chunks(items: List[RenderItem]) -> List[Chunk]:
 # ============================================================
 # Renderers
 # ============================================================
-def render_boxes(doc_json: Dict[str, Any], items: List[RenderItem], pages: Dict[str, Any], show_empty_text: bool, limit: int) -> str:
+def render_boxes(
+    doc_json: Dict[str, Any],
+    items: List[RenderItem],
+    pages: Dict[str, Any],
+    show_empty_text: bool,
+    limit: int,
+) -> str:
     css = """
     <style>
       .dv-box {
@@ -510,7 +611,9 @@ def render_boxes(doc_json: Dict[str, Any], items: List[RenderItem], pages: Dict[
                 parts.append("</div>")
             section_open = True
             parts.append("<div class='dv-section'>")
-            parts.append(f"<div class='dv-section-title'>{html.escape(it.text.strip() or '(untitled section)')}</div>")
+            parts.append(
+                f"<div class='dv-section-title'>{html.escape(it.text.strip() or '(untitled section)')}</div>"
+            )
             continue
 
         if not show_empty_text and (not it.text or not it.text.strip()):
@@ -522,7 +625,9 @@ def render_boxes(doc_json: Dict[str, Any], items: List[RenderItem], pages: Dict[
                 data_url = crop_picture_from_page(pages, it.page_no, it.bbox)
 
             parts.append("<div class='dv-imgwrap'>")
-            parts.append(f"<div class='dv-imgmeta'>picture {html.escape(it.self_ref)} | page {it.page_no}</div>")
+            parts.append(
+                f"<div class='dv-imgmeta'>picture {html.escape(it.self_ref)} | page {it.page_no}</div>"
+            )
 
             props = picture_properties_html(doc_json, it.self_ref)
             if props:
@@ -591,7 +696,6 @@ def render_chunk_cards(chunks: List[Chunk]) -> str:
         else:
             page_txt = f"pages: {ch.page_min}-{ch.page_max}"
 
-        # SINGLE f-string (prevents the SyntaxError you hit earlier)
         meta = f"{html.escape(ch.chunk_id)} {page_txt} items: {len(ch.item_idxs)}"
 
         parts.append("<div class='dv-chunk'>")
@@ -638,6 +742,52 @@ def selected_chunk_ids(selected_labels: List[str]) -> Optional[set]:
     return ids or None
 
 
+def selected_chunk_id_list(selected_labels: List[str]) -> Optional[List[str]]:
+    """
+    Return list of selected chunk ids.
+    None means '(All chunks)' => all chunks.
+    """
+    if "(All chunks)" in selected_labels:
+        return None
+    out: List[str] = []
+    for lab in selected_labels:
+        if lab == "(All chunks)":
+            continue
+        cid = lab.split(CHUNK_SEP, 1)[0].strip()
+        if cid:
+            out.append(cid)
+    return out or None
+
+
+# ============================================================
+# Phase 4: suggest multiple chunks
+# ============================================================
+def suggest_for_chunks(
+    annif_project_id: str,
+    chunks: List[Chunk],
+    selected_ids: Optional[List[str]],
+    limit: int,
+    threshold: float,
+) -> Dict[str, Any]:
+    out: Dict[str, Any] = {}
+    want = set(selected_ids) if selected_ids is not None else None
+
+    for ch in chunks:
+        if want is not None and ch.chunk_id not in want:
+            continue
+        out[ch.chunk_id] = {
+            "title": ch.title,
+            "suggestions": annif_suggest(
+                project_id=annif_project_id,
+                text=ch.text,
+                limit=int(limit),
+                threshold=float(threshold),
+            ),
+        }
+
+    return out
+
+
 # ============================================================
 # Gradio callback
 # ============================================================
@@ -649,8 +799,9 @@ def load_and_render(
     show_empty_text: bool,
     max_items: int,
     render_limit: int,
+    suggest_limit: int,
+    suggest_threshold: float,
 ):
-    # Keep dropdown stable (static choices)
     proj_choices = annif_project_choices()
     if proj_choices:
         if annif_project_choice not in proj_choices:
@@ -664,12 +815,12 @@ def load_and_render(
         return (
             "<div class='dv-box'>Upload a Docling JSON file first.</div>",
             {"items": 0},
+            {},
             annif_update,
             dd_update,
         )
 
-    with open(uploaded_file.name, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    data = load_json_robust(uploaded_file.name)
 
     pages = data.get("pages") if isinstance(data, dict) else None
     if not isinstance(pages, dict):
@@ -678,7 +829,6 @@ def load_and_render(
     items = extract_render_items(data, int(max_items))
     chunks = build_section_chunks(items)
 
-    # Update chunk dropdown
     choices = chunk_choices(chunks)
     selected = normalize_chunk_choice(chunk_choice, choices)
     if "(All chunks)" in selected and len(selected) > 1:
@@ -687,36 +837,36 @@ def load_and_render(
 
     annif_pid = annif_project_id_from_choice(annif_project_choice)
 
+    base_stats = {
+        "items": len(items),
+        "pages": len(pages),
+        "chunks": len(chunks),
+        "mode": mode,
+        "annif_project": annif_pid,
+        "suggest_limit": int(suggest_limit),
+        "suggest_threshold": float(suggest_threshold),
+        "annif_base_url": ANNIF_BASE_URL,
+    }
+
+    suggestions_view: Dict[str, Any] = {}
+    if mode == "Chunks" and annif_pid:
+        selected_ids = selected_chunk_id_list(selected)  # None => all chunks
+        suggestions_view = suggest_for_chunks(
+            annif_project_id=annif_pid,
+            chunks=chunks,
+            selected_ids=selected_ids,
+            limit=int(suggest_limit),
+            threshold=float(suggest_threshold),
+        )
+
     if mode == "Chunks":
         want = selected_chunk_ids(selected)  # None => all
         visible = [c for c in chunks if (want is None or c.chunk_id in want)]
         html_out = render_chunk_cards(visible)
-        return (
-            html_out,
-            {
-                "items": len(items),
-                "pages": len(pages),
-                "chunks": len(chunks),
-                "mode": "Chunks",
-                "annif_project": annif_pid,
-            },
-            annif_update,
-            dd_update,
-        )
+        return (html_out, base_stats, suggestions_view, annif_update, dd_update)
 
     html_out = render_boxes(data, items, pages, show_empty_text, int(render_limit))
-    return (
-        html_out,
-        {
-            "items": len(items),
-            "pages": len(pages),
-            "chunks": len(chunks),
-            "mode": "Items",
-            "annif_project": annif_pid,
-        },
-        annif_update,
-        dd_update,
-    )
+    return (html_out, base_stats, suggestions_view, annif_update, dd_update)
 
 
 # ============================================================
@@ -747,14 +897,29 @@ with gr.Blocks(title="Docling JSON Renderer") as demo:
     max_items = gr.Slider(100, 10000, value=2000, label="Max items to scan")
     render_limit = gr.Slider(50, 5000, value=600, label="Render limit (Items mode)")
 
+    with gr.Row():
+        suggest_limit = gr.Slider(1, 50, value=10, step=1, label="Annif suggest limit")
+        suggest_threshold = gr.Slider(0.0, 1.0, value=0.0, step=0.01, label="Annif suggest threshold")
+
     btn = gr.Button("Render")
     html_view = gr.HTML()
     stats = gr.JSON()
+    suggestions_view = gr.JSON(label="Annif suggestions (all / selected chunks)")
 
     btn.click(
         load_and_render,
-        [file_in, mode, annif_project, chunk_select, show_empty, max_items, render_limit],
-        [html_view, stats, annif_project, chunk_select],
+        [
+            file_in,
+            mode,
+            annif_project,
+            chunk_select,
+            show_empty,
+            max_items,
+            render_limit,
+            suggest_limit,
+            suggest_threshold,
+        ],
+        [html_view, stats, suggestions_view, annif_project, chunk_select],
     )
 
 if __name__ == "__main__":
