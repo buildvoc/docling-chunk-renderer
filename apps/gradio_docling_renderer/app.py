@@ -1,6 +1,10 @@
-# app.py
-# Minimal Docling JSON renderer (vertical flow) with ONLY the 2 top-level pictures rendered.
-# Update: add picture "properties" (classification + description) like Docling-Serve.
+#!/usr/bin/env python3
+"""
+Gradio Docling JSON Renderer
+- Items mode: existing box rendering (sections + pictures)
+- Chunks mode: section_header-based chunks rendered as cards
+- Chunk selector: MULTI-SELECT dropdown to filter which chunk card(s) render
+"""
 
 from __future__ import annotations
 
@@ -9,262 +13,196 @@ import html
 import io
 import json
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import gradio as gr
-from PIL import Image
+
+try:
+    from PIL import Image
+except Exception:  # pragma: no cover
+    Image = None  # type: ignore
 
 
 # -----------------------------
-# Data
+# Data models
 # -----------------------------
 @dataclass
 class RenderItem:
     idx: int
+    self_ref: str
     label: str
     text: str
-    depth: int
-    self_ref: Optional[str] = None  # <-- added
     page_no: Optional[int] = None
-    bbox: Optional[Dict[str, float]] = None  # {"l","t","r","b","coord_origin"}
+    bbox: Optional[Dict[str, Any]] = None
+
+
+@dataclass
+class Chunk:
+    chunk_id: str
+    title: str
+    text: str
+    item_idxs: List[int]
+    page_min: Optional[int] = None
+    page_max: Optional[int] = None
+    bbox_min: Optional[Dict[str, Any]] = None
+    bbox_max: Optional[Dict[str, Any]] = None
 
 
 # -----------------------------
-# Helpers: tolerant Docling JSON extraction
+# Minimal logging helpers
 # -----------------------------
-def _as_int(x: Any) -> Optional[int]:
+def log_info(msg: str) -> None:
+    print(f"[gradio_docling_renderer] {msg}")
+
+
+def log_warn(msg: str) -> None:
+    print(f"[gradio_docling_renderer][warn] {msg}")
+
+
+# -----------------------------
+# Helpers: Docling JSON access
+# -----------------------------
+def _ref_index(self_ref: str, prefix: str) -> Optional[int]:
+    if not isinstance(self_ref, str) or not self_ref.startswith(prefix):
+        return None
     try:
-        return int(x) if x is not None else None
+        return int(self_ref.split("/")[-1])
     except Exception:
         return None
 
 
-def _pick_label(obj: Dict[str, Any]) -> str:
-    for k in ("label", "type", "kind", "name"):
-        v = obj.get(k)
-        if isinstance(v, str) and v.strip():
-            return v.strip()
-    return "ITEM"
-
-
-def _pick_text(obj: Dict[str, Any]) -> str:
-    for k in ("text", "content", "value", "title", "caption", "orig"):
-        v = obj.get(k)
-        if isinstance(v, str) and v.strip():
-            return v.strip()
-
-    v = obj.get("text")
-    if isinstance(v, dict):
-        for kk in ("content", "value", "text"):
-            vv = v.get(kk)
-            if isinstance(vv, str) and vv.strip():
-                return vv.strip()
-
-    return ""
-
-
-def _pick_prov(obj: Dict[str, Any]) -> Tuple[Optional[int], Optional[Dict[str, float]]]:
-    prov = obj.get("prov")
+def _first_prov(item: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    prov = item.get("prov")
     if isinstance(prov, list) and prov:
         p0 = prov[0]
-        if isinstance(p0, dict):
-            page_no = _as_int(p0.get("page_no"))
-            bbox = p0.get("bbox")
-            if isinstance(bbox, dict):
-                return page_no, bbox
-            return page_no, None
-    return None, None
+        return p0 if isinstance(p0, dict) else None
+    return None
 
 
-def _iter_children(obj: Dict[str, Any]) -> List[Any]:
-    for k in ("children", "items", "nodes", "content_items"):
-        v = obj.get(k)
-        if isinstance(v, list):
-            return v
-    return []
-
-
-def extract_render_items(doc_json: Any, max_items: int = 2000) -> List[RenderItem]:
-    out: List[RenderItem] = []
-    idx = 0
-
-    def is_candidate(d: Dict[str, Any]) -> bool:
-        if not isinstance(d, dict):
-            return False
-        has_label = any(isinstance(d.get(k), str) for k in ("label", "type", "kind", "name"))
-        has_text = (
-            isinstance(d.get("text"), (str, dict))
-            or isinstance(d.get("content"), str)
-            or isinstance(d.get("orig"), str)
-        )
-        has_children = isinstance(d.get("children"), list) or isinstance(d.get("items"), list)
-        has_prov = isinstance(d.get("prov"), list)
-        return (has_label and (has_text or has_children)) or (has_prov and (has_text or has_label))
-
-    def walk(x: Any, depth: int):
-        nonlocal idx
-        if len(out) >= max_items:
-            return
-
-        if isinstance(x, dict):
-            if is_candidate(x):
-                label = _pick_label(x)
-                text = _pick_text(x)
-                page_no, bbox = _pick_prov(x)
-                self_ref = x.get("self_ref") if isinstance(x.get("self_ref"), str) else None
-
-                out.append(RenderItem(idx, label, text, depth, self_ref, page_no, bbox))
-                idx += 1
-
-                for c in _iter_children(x):
-                    walk(c, depth + 1)
-            else:
-                for v in x.values():
-                    walk(v, depth)
-
-        elif isinstance(x, list):
-            for it in x:
-                walk(it, depth)
-
-    walk(doc_json, 0)
-    return out
+def _item_page_bbox(item: Dict[str, Any]) -> Tuple[Optional[int], Optional[Dict[str, Any]]]:
+    p0 = _first_prov(item)
+    if not p0:
+        return None, None
+    page_no = p0.get("page_no")
+    bbox = p0.get("bbox")
+    if not isinstance(page_no, int):
+        page_no = None
+    if not isinstance(bbox, dict):
+        bbox = None
+    return page_no, bbox
 
 
 # -----------------------------
-# Image helpers (crop picture from page raster)
+# Picture helpers (existing behavior)
 # -----------------------------
-def _data_url_to_pil(data_url: str) -> Image.Image:
-    header, b64 = data_url.split(",", 1)
-    raw = base64.b64decode(b64)
-    return Image.open(io.BytesIO(raw)).convert("RGBA")
-
-
-def _pil_to_data_url_png(im: Image.Image) -> str:
-    buf = io.BytesIO()
-    im.save(buf, format="PNG")
-    b64 = base64.b64encode(buf.getvalue()).decode("utf-8")
-    return f"data:image/png;base64,{b64}"
-
-
-def crop_picture_from_page(
-    pages: Dict[str, Any],
-    page_no: int,
-    bbox: Dict[str, float],
-    pad_px: int = 2,
-) -> Optional[str]:
+def crop_picture_from_page(pages: Dict[str, Any], page_no: int, bbox: Dict[str, Any]) -> Optional[str]:
     """
-    Crop from pages[str(page_no)].image.uri using bbox in PDF coords (BOTTOMLEFT).
+    Attempt to crop from embedded page image if available.
+    Returns a data URL (png) or None.
     """
-    p = pages.get(str(page_no))
-    if not isinstance(p, dict):
+    if Image is None:
         return None
 
-    img_meta = p.get("image") or {}
-    page_uri = img_meta.get("uri")
-    if not (isinstance(page_uri, str) and page_uri.startswith("data:")):
+    page = pages.get(str(page_no)) if isinstance(pages, dict) else None
+    if page is None:
+        page = pages.get(page_no) if isinstance(pages, dict) else None
+    if not isinstance(page, dict):
         return None
 
-    pdf_size = p.get("size") or {}
-    pdf_w = float(pdf_size.get("width") or 0)
-    pdf_h = float(pdf_size.get("height") or 0)
-
-    px_size = img_meta.get("size") or {}
-    px_w = float(px_size.get("width") or 0)
-    px_h = float(px_size.get("height") or 0)
-
-    if pdf_w <= 0 or pdf_h <= 0 or px_w <= 0 or px_h <= 0:
+    img_b64 = page.get("image")
+    if not isinstance(img_b64, str) or not img_b64:
         return None
 
-    # bbox in PDF coords
-    l = float(bbox.get("l", 0))
-    t = float(bbox.get("t", 0))
-    r = float(bbox.get("r", 0))
-    b = float(bbox.get("b", 0))
-
-    # Convert to pixel coords (TOPLEFT origin)
-    x0 = int(round((l / pdf_w) * px_w))
-    x1 = int(round((r / pdf_w) * px_w))
-    y0 = int(round(((pdf_h - t) / pdf_h) * px_h))
-    y1 = int(round(((pdf_h - b) / pdf_h) * px_h))
-
-    x0, x1 = sorted((x0, x1))
-    y0, y1 = sorted((y0, y1))
-
-    x0 = max(0, x0 - pad_px)
-    y0 = max(0, y0 - pad_px)
-    x1 = min(int(px_w), x1 + pad_px)
-    y1 = min(int(px_h), y1 + pad_px)
-
-    if x1 - x0 < 2 or y1 - y0 < 2:
-        return None
-
-    im = _data_url_to_pil(page_uri)
-    cropped = im.crop((x0, y0, x1, y1))
-    return _pil_to_data_url_png(cropped)
-
-
-# -----------------------------
-# NEW: picture properties (classification + description)
-# -----------------------------
-def _format_conf(x: Any) -> str:
     try:
-        v = float(x)
-        # match Docling-Serve style: 1 for near-1, else 2 decimals, tiny as <0.01
-        if v >= 0.995:
-            return "1"
-        if v < 0.01:
-            return "&lt; 0.01"
-        return f"{v:.2f}"
+        raw = base64.b64decode(img_b64)
+        im = Image.open(io.BytesIO(raw)).convert("RGB")
+    except Exception:
+        return None
+
+    try:
+        l = float(bbox.get("l"))
+        t = float(bbox.get("t"))
+        r = float(bbox.get("r"))
+        b = float(bbox.get("b"))
+    except Exception:
+        return None
+
+    W, H = im.size
+    if max(l, r) > W * 5 or max(t, b) > H * 5:
+        return None
+
+    # Convert BOTTOMLEFT -> TOPLEFT
+    y1 = max(0, min(H, int(H - t)))
+    y2 = max(0, min(H, int(H - b)))
+    x1 = max(0, min(W, int(l)))
+    x2 = max(0, min(W, int(r)))
+
+    left = min(x1, x2)
+    right = max(x1, x2)
+    top = min(y1, y2)
+    bottom = max(y1, y2)
+
+    if right - left < 2 or bottom - top < 2:
+        return None
+
+    crop = im.crop((left, top, right, bottom))
+    buf = io.BytesIO()
+    crop.save(buf, format="PNG")
+    return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
+
+
+def _format_conf(v: Any) -> str:
+    try:
+        f = float(v)
+        return f"{f:.3f}"
     except Exception:
         return ""
 
 
-def picture_properties_html(doc_json: Dict[str, Any], self_ref: str) -> str:
+def picture_properties_html(doc_json: Dict[str, Any], pic_ref: str) -> str:
     """
-    self_ref looks like "#/pictures/0".
-    We'll read doc_json["pictures"][idx]["annotations"].
+    Render picture classification + description if present.
+    Defensive across exporters.
     """
-    try:
-        idx = int(self_ref.split("/")[-1])
-    except Exception:
+    if not isinstance(doc_json, dict):
         return ""
 
     pics = doc_json.get("pictures")
-    if not isinstance(pics, list) or not (0 <= idx < len(pics)):
+    if not isinstance(pics, list):
         return ""
 
-    ann = pics[idx].get("annotations") or []
-    if not isinstance(ann, list):
+    idx = _ref_index(pic_ref, "#/pictures/")
+    if idx is None or idx < 0 or idx >= len(pics):
         return ""
 
-    # Extract classification + description
-    pred: List[Dict[str, Any]] = []
-    desc_text: Optional[str] = None
+    p = pics[idx]
+    if not isinstance(p, dict):
+        return ""
 
-    for a in ann:
-        if not isinstance(a, dict):
-            continue
-        if a.get("kind") == "classification":
-            pc = a.get("predicted_classes")
-            if isinstance(pc, list):
-                pred = [x for x in pc if isinstance(x, dict)]
-        elif a.get("kind") == "description":
-            t = a.get("text")
-            if isinstance(t, str) and t.strip():
-                desc_text = t.strip()
+    meta = p.get("meta")
+    if not isinstance(meta, dict):
+        meta = {}
 
-    # Build HTML (mini panel like Docling tooltip)
-    rows = []
-    if pred:
-        top = pred[:3]
-        more = max(0, len(pred) - len(top))
+    rows: List[str] = []
 
-        rows.append("<div class='dv-prop-title'>Class</div>")
-        rows.append("<div class='dv-prop-title'>Confidence</div>")
+    classes = meta.get("classes") or meta.get("classification") or meta.get("predictions") or meta.get("classifications")
+    desc_text = meta.get("description") or meta.get("caption") or meta.get("desc")
+
+    if isinstance(classes, dict):
+        classes = classes.get("top_k") or classes.get("classes") or classes.get("predictions") or []
+
+    if isinstance(classes, list) and classes:
+        top = classes[:5]
+        more = max(0, len(classes) - len(top))
+
+        rows.append("<div class='dv-prop-head'>Class</div>")
+        rows.append("<div class='dv-prop-head'>Confidence</div>")
 
         for c in top:
-            cn = html.escape(str(c.get("class_name", "")))
-            cf = _format_conf(c.get("confidence"))
+            if not isinstance(c, dict):
+                continue
+            cn = html.escape(str(c.get("class_name", c.get("label", "")) or ""))
+            cf = _format_conf(c.get("confidence", c.get("score")))
             rows.append(f"<div class='dv-prop-cell'>{cn}</div>")
             rows.append(f"<div class='dv-prop-cell'>{cf}</div>")
 
@@ -273,26 +211,129 @@ def picture_properties_html(doc_json: Dict[str, Any], self_ref: str) -> str:
             rows.append("<div class='dv-prop-muted'>&nbsp;</div>")
 
     desc_block = ""
-    if desc_text:
+    if isinstance(desc_text, str) and desc_text.strip():
         desc_block = (
             "<div class='dv-desc'>"
             "<div class='dv-desc-title'>Description</div>"
-            f"<div class='dv-desc-text'>{html.escape(desc_text)}</div>"
+            f"<div class='dv-desc-text'>{html.escape(desc_text.strip())}</div>"
             "</div>"
         )
 
     if not rows and not desc_block:
         return ""
 
-    grid = ""
-    if rows:
-        grid = "<div class='dv-prop-grid'>" + "".join(rows) + "</div>"
-
+    grid = "<div class='dv-prop-grid'>" + "".join(rows) + "</div>" if rows else ""
     return "<div class='dv-props'>" + grid + desc_block + "</div>"
 
 
 # -----------------------------
-# Render (same as your original, plus ONLY 2 pictures)
+# Extraction (prefer doc_json["texts"])
+# -----------------------------
+def extract_render_items(doc_json: Any, max_items: int) -> List[RenderItem]:
+    if not isinstance(doc_json, dict):
+        return []
+
+    items: List[RenderItem] = []
+
+    texts = doc_json.get("texts")
+    if isinstance(texts, list) and texts:
+        for i, t in enumerate(texts[: max_items or len(texts)]):
+            if not isinstance(t, dict):
+                continue
+            self_ref = t.get("self_ref") or f"#/texts/{i}"
+            label = t.get("label") or ""
+            text = t.get("text") or t.get("orig") or ""
+            if not isinstance(self_ref, str):
+                self_ref = f"#/texts/{i}"
+            if not isinstance(label, str):
+                label = ""
+            if not isinstance(text, str):
+                text = ""
+            page_no, bbox = _item_page_bbox(t)
+            items.append(RenderItem(idx=i, self_ref=self_ref, label=label, text=text, page_no=page_no, bbox=bbox))
+        return items
+
+    # Fallback scan for other exports
+    for key in ("body", "furniture", "pictures", "tables", "key_value_items", "form_items"):
+        arr = doc_json.get(key)
+        if not isinstance(arr, list):
+            continue
+        for t in arr:
+            if len(items) >= max_items:
+                break
+            if not isinstance(t, dict):
+                continue
+            self_ref = t.get("self_ref") or ""
+            label = t.get("label") or key
+            text = t.get("text") or t.get("orig") or ""
+            if not isinstance(self_ref, str):
+                self_ref = ""
+            if not isinstance(label, str):
+                label = ""
+            if not isinstance(text, str):
+                text = ""
+            page_no, bbox = _item_page_bbox(t)
+            items.append(RenderItem(idx=len(items), self_ref=self_ref, label=label, text=text, page_no=page_no, bbox=bbox))
+
+    return items
+
+
+# -----------------------------
+# Chunking
+# -----------------------------
+def build_section_chunks(items: List[RenderItem]) -> List[Chunk]:
+    if not items:
+        return []
+
+    chunks: List[Chunk] = []
+    current: Optional[Chunk] = None
+
+    def _finalize(ch: Chunk) -> None:
+        ch.text = (ch.text or "").strip()
+        chunks.append(ch)
+
+    for it in items:
+        if it.label == "section_header":
+            if current is not None:
+                _finalize(current)
+
+            title = (it.text or "").strip()
+            current = Chunk(
+                chunk_id=f"chunk_{len(chunks)+1:04d}",
+                title=title if title else "(untitled)",
+                text="",
+                item_idxs=[],
+                page_min=it.page_no,
+                page_max=it.page_no,
+                bbox_min=it.bbox,
+                bbox_max=it.bbox,
+            )
+            continue
+
+        if current is None:
+            current = Chunk(chunk_id="chunk_0000", title="(preamble)", text="", item_idxs=[])
+
+        current.item_idxs.append(it.idx)
+
+        if it.text:
+            current.text += it.text.strip() + "\n"
+
+        if isinstance(it.page_no, int):
+            if current.page_min is None or it.page_no < current.page_min:
+                current.page_min = it.page_no
+                current.bbox_min = it.bbox
+            if current.page_max is None or it.page_no > current.page_max:
+                current.page_max = it.page_no
+                current.bbox_max = it.bbox
+
+    if current is not None:
+        _finalize(current)
+
+    return chunks
+
+
+# -----------------------------
+# Renderers
 # -----------------------------
 def render_boxes(doc_json: Dict[str, Any], items: List[RenderItem], pages: Dict[str, Any], show_empty_text: bool, limit: int) -> str:
     css = """
@@ -313,6 +354,10 @@ def render_boxes(doc_json: Dict[str, Any], items: List[RenderItem], pages: Dict[
         margin:14px 0;
         background:rgba(255,140,0,0.06);
       }
+      .dv-section-title {
+        font-weight:700;
+        margin-bottom:8px;
+      }
       .dv-imgwrap {
         background:#0b0b0b;
         color:#f4f4f4;
@@ -332,76 +377,44 @@ def render_boxes(doc_json: Dict[str, Any], items: List[RenderItem], pages: Dict[
         border-radius:8px;
         display:block;
       }
-
-      /* NEW: picture properties panel */
       .dv-props {
-        margin: 10px 0 12px 0;
-        padding: 10px 12px;
-        border-radius: 12px;
-        background: #111;
-        border: 1px solid #2a2a2a;
+        border:1px solid #2a2a2a;
+        border-radius:10px;
+        padding:10px 12px;
+        margin:10px 0 8px 0;
+        background:rgba(255,255,255,0.03);
       }
       .dv-prop-grid {
-        display: grid;
+        display:grid;
         grid-template-columns: 1fr 120px;
-        gap: 6px 14px;
-        align-items: baseline;
+        gap:6px 12px;
+        align-items:center;
       }
-      .dv-prop-title {
-        font-weight: 700;
-        opacity: 0.95;
-      }
-      .dv-prop-cell {
-        opacity: 0.92;
-      }
-      .dv-prop-muted {
-        opacity: 0.65;
-        font-size: 12px;
-      }
-      .dv-desc {
-        margin-top: 10px;
-        padding-top: 10px;
-        border-top: 1px solid #2a2a2a;
-      }
-      .dv-desc-title {
-        font-weight: 700;
-        margin-bottom: 6px;
-      }
-      .dv-desc-text {
-        opacity: 0.9;
-      }
+      .dv-prop-head { font-weight:700; opacity:0.9; }
+      .dv-prop-cell { opacity:0.95; }
+      .dv-prop-muted { opacity:0.7; font-size:12px; }
+      .dv-desc { margin-top:10px; }
+      .dv-desc-title { font-weight:700; opacity:0.9; margin-bottom:4px; }
+      .dv-desc-text { opacity:0.95; white-space:pre-wrap; }
     </style>
     """
 
     parts = [css, "<div>"]
     section_open = False
 
-    # Keep your original filtering for text items,
-    # but ALSO allow the two top-level pictures through.
-    visible: List[RenderItem] = []
-    for it in items[:limit]:
-        is_top_picture = (it.label == "picture" and isinstance(it.self_ref, str) and it.self_ref.startswith("#/pictures/"))
-        if is_top_picture:
-            visible.append(it)
-        elif it.text or show_empty_text:
-            visible.append(it)
-
-    for it in visible:
-        if it.label == "page_footer":
-            if section_open:
-                parts.append("</div>")
-                section_open = False
-            continue
-
+    lim = max(0, int(limit or 0))
+    for it in items[:lim]:
         if it.label == "section_header":
             if section_open:
                 parts.append("</div>")
-            parts.append("<div class='dv-section'>")
-            parts.append(f"<b>{html.escape(it.text or '(section)')}</b>")
             section_open = True
+            parts.append("<div class='dv-section'>")
+            parts.append(f"<div class='dv-section-title'>{html.escape(it.text.strip() or '(untitled section)')}</div>")
             continue
 
-        # ONLY render the 2 pictures (#/pictures/0 and #/pictures/1)
+        if not show_empty_text and (not it.text or not it.text.strip()):
+            continue
+
         if it.label == "picture" and isinstance(it.self_ref, str) and it.self_ref.startswith("#/pictures/"):
             data_url = None
             if it.page_no is not None and isinstance(it.bbox, dict):
@@ -410,7 +423,6 @@ def render_boxes(doc_json: Dict[str, Any], items: List[RenderItem], pages: Dict[
             parts.append("<div class='dv-imgwrap'>")
             parts.append(f"<div class='dv-imgmeta'>picture {html.escape(it.self_ref)} | page {it.page_no}</div>")
 
-            # NEW: properties panel (classification + description)
             props = picture_properties_html(doc_json, it.self_ref)
             if props:
                 parts.append(props)
@@ -423,7 +435,6 @@ def render_boxes(doc_json: Dict[str, Any], items: List[RenderItem], pages: Dict[
             parts.append("</div>")
             continue
 
-        # default: your original text box behavior
         parts.append(f"<div class='dv-box'>{html.escape(it.text)}</div>")
 
     if section_open:
@@ -433,12 +444,119 @@ def render_boxes(doc_json: Dict[str, Any], items: List[RenderItem], pages: Dict[
     return "\n".join(parts)
 
 
+def render_chunk_cards(chunks: List[Chunk]) -> str:
+    css = """
+    <style>
+      .dv-chunk {
+        background:#0b0b0b;
+        color:#f4f4f4;
+        border:2px solid #ff8c00;   /* orange boxing like sections */
+        border-radius:14px;
+        padding:12px 14px;
+        margin:12px 0;
+      }
+      .dv-chunk-head {
+        display:flex;
+        align-items:baseline;
+        justify-content:space-between;
+        gap:12px;
+        margin-bottom:10px;
+      }
+      .dv-chunk-title { font-weight:800; font-size:16px; }
+      .dv-chunk-meta { opacity:0.75; font-size:12px; white-space:nowrap; }
+      .dv-chunk-body { white-space:pre-wrap; opacity:0.95; }
+      .dv-box {
+        background:#0b0b0b;
+        color:#f4f4f4;
+        border:1px solid #2a2a2a;
+        border-radius:10px;
+        padding:10px 12px;
+        margin:8px 0;
+        white-space:pre-wrap;
+      }
+    </style>
+    """
+    parts = [css, "<div>"]
+    if not chunks:
+        parts.append("<div class='dv-box'>No chunks found (no section_header items).</div>")
+        parts.append("</div>")
+        return "\n".join(parts)
+
+    for ch in chunks:
+        if ch.page_min is None or ch.page_max is None:
+            page_txt = "pages: ?"
+        elif ch.page_min == ch.page_max:
+            page_txt = f"page: {ch.page_min}"
+        else:
+            page_txt = f"pages: {ch.page_min}-{ch.page_max}"
+
+        #  FIXED f-string (no broken quotes)
+        meta = f"{html.escape(ch.chunk_id)} {page_txt} items: {len(ch.item_idxs)}"
+
+        parts.append("<div class='dv-chunk'>")
+        parts.append("<div class='dv-chunk-head'>")
+        parts.append(f"<div class='dv-chunk-title'>{html.escape(ch.title or '(untitled)')}</div>")
+        parts.append(f"<div class='dv-chunk-meta'>{meta}</div>")
+        parts.append("</div>")
+        parts.append(f"<div class='dv-chunk-body'>{html.escape(ch.text or '')}</div>")
+        parts.append("</div>")
+
+    parts.append("</div>")
+    return "\n".join(parts)
+
+
 # -----------------------------
-# Gradio callbacks
+# Chunk selector helpers (MULTI)
 # -----------------------------
-def load_and_render(uploaded_file, show_empty_text: bool, max_items: int, render_limit: int):
+def _chunk_choices(chunks: List[Chunk]) -> List[str]:
+    return ["(All chunks)"] + [f"{c.chunk_id}  {c.title}" for c in chunks]
+
+
+def _normalize_chunk_choice(choice: Union[str, List[str], None], choices: List[str]) -> List[str]:
+    """
+    Gradio multiselect dropdown returns List[str].
+    Keep defensive: handle str/None too.
+    """
+    if choice is None:
+        return ["(All chunks)"]
+    if isinstance(choice, str):
+        return [choice] if choice in choices else ["(All chunks)"]
+    if isinstance(choice, list):
+        cleaned = [c for c in choice if isinstance(c, str) and c in choices]
+        return cleaned or ["(All chunks)"]
+    return ["(All chunks)"]
+
+
+def _selected_chunk_ids(selected_labels: List[str]) -> Optional[set]:
+    """
+    Convert selected dropdown labels into chunk_id set.
+    If "(All chunks)" selected -> None (means no filtering).
+    """
+    if "(All chunks)" in selected_labels:
+        return None
+    ids = set()
+    for lab in selected_labels:
+        # "chunk_0001  Title"
+        chunk_id = lab.split("", 1)[0].strip()
+        if chunk_id:
+            ids.add(chunk_id)
+    return ids or None
+
+
+# -----------------------------
+# Gradio callback (updated for MULTI chunk selector)
+# -----------------------------
+def load_and_render(
+    uploaded_file,
+    mode: str,
+    chunk_choice: Union[str, List[str], None],
+    show_empty_text: bool,
+    max_items: int,
+    render_limit: int,
+):
     if uploaded_file is None:
-        return "<div class='dv-box'>Upload a Docling JSON file first.</div>", {"items": 0}
+        dd_update = gr.update(choices=["(All chunks)"], value=["(All chunks)"])
+        return "<div class='dv-box'>Upload a Docling JSON file first.</div>", {"items": 0}, dd_update
 
     with open(uploaded_file.name, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -447,28 +565,61 @@ def load_and_render(uploaded_file, show_empty_text: bool, max_items: int, render
     if not isinstance(pages, dict):
         pages = {}
 
-    items = extract_render_items(data, max_items)
-    html_out = render_boxes(data, items, pages, show_empty_text, render_limit)
-    return html_out, {"items": len(items), "pages": len(pages)}
+    items = extract_render_items(data, int(max_items))
+    chunks = build_section_chunks(items)
+
+    # Dropdown choices always updated from current chunks
+    choices = _chunk_choices(chunks)
+
+    selected = _normalize_chunk_choice(chunk_choice, choices)
+
+    # Ensure "(All chunks)" behaves sensibly:
+    # if user selects other chunks, drop "(All chunks)" automatically.
+    if "(All chunks)" in selected and len(selected) > 1:
+        selected = [s for s in selected if s != "(All chunks)"]
+
+    dd_update = gr.update(choices=choices, value=selected)
+
+    if mode == "Chunks":
+        selected_ids = _selected_chunk_ids(selected)  # None => all chunks
+        visible = [c for c in chunks if (selected_ids is None or c.chunk_id in selected_ids)]
+        html_out = render_chunk_cards(visible)
+        return html_out, {"items": len(items), "pages": len(pages), "chunks": len(chunks), "mode": "Chunks"}, dd_update
+
+    html_out = render_boxes(data, items, pages, show_empty_text, int(render_limit))
+    return html_out, {"items": len(items), "pages": len(pages), "chunks": len(chunks), "mode": "Items"}, dd_update
 
 
 # -----------------------------
 # UI
 # -----------------------------
 with gr.Blocks(title="Docling JSON Renderer") as demo:
-    file_in = gr.File(file_types=[".json"])
+    file_in = gr.File(file_types=[".json"], label="Docling JSON")
+
+    with gr.Row():
+        mode = gr.Radio(["Items", "Chunks"], value="Items", label="Render mode")
+        #  MULTISELECT dropdown
+        chunk_select = gr.Dropdown(
+            choices=["(All chunks)"],
+            value=["(All chunks)"],
+            multiselect=True,
+            label="Chunk selector (multi)",
+        )
+
     show_empty = gr.Checkbox(False, label="Show empty text")
-    max_items = gr.Slider(100, 10000, value=2000)
-    render_limit = gr.Slider(50, 5000, value=600)
+    max_items = gr.Slider(100, 10000, value=2000, label="Max items to scan")
+    render_limit = gr.Slider(50, 5000, value=600, label="Render limit (Items mode)")
+
     btn = gr.Button("Render")
     html_view = gr.HTML()
     stats = gr.JSON()
 
     btn.click(
         load_and_render,
-        [file_in, show_empty, max_items, render_limit],
-        [html_view, stats],
+        [file_in, mode, chunk_select, show_empty, max_items, render_limit],
+        [html_view, stats, chunk_select],
     )
 
 if __name__ == "__main__":
     demo.launch(server_name="0.0.0.0", server_port=7860)
+ 
