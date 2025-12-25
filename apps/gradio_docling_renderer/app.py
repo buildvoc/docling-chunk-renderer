@@ -18,10 +18,15 @@ Annif Projects (STATIC):
 - Labels normalized to ASCII to avoid � replacement chars
 
 Phase 4
-- Step 1: Annif suggest client wrapper
-- Step 2: limit/threshold controls
-- Step 3: suggest selected chunk (display in UI)
-- Step 4: suggest ALL chunks (or selected chunks)
+- Annif suggest client wrapper (formData)
+- limit/threshold controls
+- suggest ALL chunks (or selected chunks)
+
+Phase 5  Human Curation (THIS UPDATE)
+- curated subject state per chunk
+- accept suggestions
+- manual subject entry
+- remove subject
 
 Fix:
 - Robust JSON loading for files with trailing junk (JSONDecodeError: Extra data)
@@ -171,7 +176,6 @@ def annif_project_id_from_choice(choice: str) -> Optional[str]:
 # ============================================================
 # Phase 4  Annif suggest client wrapper
 # ============================================================
-# FIX: correct /v1 base
 ANNIF_BASE_URL = "https://text-analytics.buildvoc.co.uk/v1"
 ANNIF_TIMEOUT = 10.0
 
@@ -198,7 +202,7 @@ def annif_suggest(
 
     url = f"{ANNIF_BASE_URL}/projects/{project_id}/suggest"
 
-    # FIX: send formData (application/x-www-form-urlencoded), not JSON
+    # formData (application/x-www-form-urlencoded), not JSON
     form = {"text": text, "limit": int(limit), "threshold": float(threshold)}
 
     try:
@@ -541,6 +545,219 @@ def build_section_chunks(items: List[RenderItem]) -> List[Chunk]:
 
 
 # ============================================================
+# Chunk selector helpers (MULTI)  ASCII separator
+# ============================================================
+CHUNK_SEP = " - "  # ASCII only
+
+
+def chunk_choices(chunks: List[Chunk]) -> List[str]:
+    return ["(All chunks)"] + [f"{c.chunk_id}{CHUNK_SEP}{ascii_clean(c.title)}" for c in chunks]
+
+
+def normalize_chunk_choice(choice: Union[str, List[str], None], choices: List[str]) -> List[str]:
+    if choice is None:
+        return ["(All chunks)"]
+    if isinstance(choice, str):
+        return [choice] if choice in choices else ["(All chunks)"]
+    if isinstance(choice, list):
+        cleaned = [c for c in choice if isinstance(c, str) and c in choices]
+        return cleaned or ["(All chunks)"]
+    return ["(All chunks)"]
+
+
+def selected_chunk_ids(selected_labels: List[str]) -> Optional[set]:
+    if "(All chunks)" in selected_labels:
+        return None
+    ids = set()
+    for lab in selected_labels:
+        chunk_id = lab.split(CHUNK_SEP, 1)[0].strip()
+        if chunk_id:
+            ids.add(chunk_id)
+    return ids or None
+
+
+def selected_chunk_id_list(selected_labels: List[str]) -> Optional[List[str]]:
+    """
+    Return list of selected chunk ids.
+    None means '(All chunks)' => all chunks.
+    """
+    if "(All chunks)" in selected_labels:
+        return None
+    out: List[str] = []
+    for lab in selected_labels:
+        if lab == "(All chunks)":
+            continue
+        cid = lab.split(CHUNK_SEP, 1)[0].strip()
+        if cid:
+            out.append(cid)
+    return out or None
+
+
+def first_selected_chunk_id(selected_labels: List[str]) -> Optional[str]:
+    """Pick the first non-(All chunks) chunk id from the multi-select."""
+    for lab in selected_labels:
+        if lab == "(All chunks)":
+            continue
+        cid = lab.split(CHUNK_SEP, 1)[0].strip()
+        if cid:
+            return cid
+    return None
+
+
+# ============================================================
+# Phase 4: suggest multiple chunks
+# ============================================================
+def suggest_for_chunks(
+    annif_project_id: str,
+    chunks: List[Chunk],
+    selected_ids: Optional[List[str]],
+    limit: int,
+    threshold: float,
+) -> Dict[str, Any]:
+    out: Dict[str, Any] = {}
+    want = set(selected_ids) if selected_ids is not None else None
+
+    for ch in chunks:
+        if want is not None and ch.chunk_id not in want:
+            continue
+        out[ch.chunk_id] = {
+            "title": ch.title,
+            "suggestions": annif_suggest(
+                project_id=annif_project_id,
+                text=ch.text,
+                limit=int(limit),
+                threshold=float(threshold),
+            ),
+        }
+
+    return out
+
+
+# ============================================================
+# Phase 5: curated state helpers
+# ============================================================
+CuratedState = Dict[str, List[Dict[str, Any]]]
+# Store entries like:
+# {"label": "...", "uri": "...", "notation": "...", "source": "annif"|"manual"}
+
+
+def _ensure_state(s: Any) -> CuratedState:
+    return s if isinstance(s, dict) else {}
+
+
+def _norm_label(s: Any) -> str:
+    return str(s).strip() if isinstance(s, (str, int, float)) else ""
+
+
+def _dedupe_entries(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    seen = set()
+    out: List[Dict[str, Any]] = []
+    for e in entries:
+        if not isinstance(e, dict):
+            continue
+        key = (_norm_label(e.get("label")).lower(), _norm_label(e.get("uri")))
+        if not key[0]:
+            continue
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(e)
+    return out
+
+
+def curated_for_chunk(state: CuratedState, chunk_id: str) -> List[Dict[str, Any]]:
+    state = _ensure_state(state)
+    entries = state.get(chunk_id, [])
+    return entries if isinstance(entries, list) else []
+
+
+def curated_choices_for_chunk(state: CuratedState, chunk_id: str) -> List[str]:
+    entries = curated_for_chunk(state, chunk_id)
+    out = []
+    for e in entries:
+        lab = _norm_label(e.get("label"))
+        uri = _norm_label(e.get("uri"))
+        out.append(f"{lab} | {uri}" if uri else lab)
+    return out
+
+
+def accept_suggestion_to_state(
+    state: CuratedState,
+    chunk_id: Optional[str],
+    suggestion_label: Optional[str],
+    suggestions_view: Dict[str, Any],
+) -> CuratedState:
+    state = _ensure_state(state)
+    if not chunk_id or not suggestion_label:
+        return state
+    if not isinstance(suggestions_view, dict):
+        return state
+
+    chunk_block = suggestions_view.get(chunk_id)
+    if not isinstance(chunk_block, dict):
+        return state
+    suggs = chunk_block.get("suggestions")
+    if not isinstance(suggs, list):
+        return state
+
+    chosen = None
+    for s in suggs:
+        if not isinstance(s, dict):
+            continue
+        if _norm_label(s.get("label")) == _norm_label(suggestion_label):
+            chosen = s
+            break
+
+    if chosen is None:
+        return state
+
+    entry = {
+        "label": _norm_label(chosen.get("label")),
+        "uri": _norm_label(chosen.get("uri")) or None,
+        "notation": chosen.get("notation"),
+        "source": "annif",
+    }
+
+    current = curated_for_chunk(state, chunk_id)
+    current.append(entry)
+    state[chunk_id] = _dedupe_entries(current)
+    return state
+
+
+def add_manual_to_state(state: CuratedState, chunk_id: Optional[str], manual_label: Optional[str]) -> CuratedState:
+    state = _ensure_state(state)
+    if not chunk_id:
+        return state
+    lab = _norm_label(manual_label)
+    if not lab:
+        return state
+
+    entry = {"label": lab, "uri": None, "notation": None, "source": "manual"}
+    current = curated_for_chunk(state, chunk_id)
+    current.append(entry)
+    state[chunk_id] = _dedupe_entries(current)
+    return state
+
+
+def remove_curated_from_state(state: CuratedState, chunk_id: Optional[str], selected_item: Optional[str]) -> CuratedState:
+    state = _ensure_state(state)
+    if not chunk_id or not selected_item:
+        return state
+
+    entries = curated_for_chunk(state, chunk_id)
+    keep: List[Dict[str, Any]] = []
+    for e in entries:
+        lab = _norm_label(e.get("label"))
+        uri = _norm_label(e.get("uri"))
+        disp = f"{lab} | {uri}" if uri else lab
+        if disp != selected_item:
+            keep.append(e)
+
+    state[chunk_id] = keep
+    return state
+
+
+# ============================================================
 # Renderers
 # ============================================================
 def render_boxes(
@@ -650,7 +867,30 @@ def render_boxes(
     return "\n".join(parts)
 
 
-def render_chunk_cards(chunks: List[Chunk]) -> str:
+def _curated_badges_html(curated_entries: List[Dict[str, Any]]) -> str:
+    if not curated_entries:
+        return "<div class='dv-curated-empty'>(no curated subjects)</div>"
+
+    bits = []
+    for e in curated_entries[:50]:
+        if not isinstance(e, dict):
+            continue
+        lab = html.escape(_norm_label(e.get("label")))
+        uri = _norm_label(e.get("uri"))
+        src = html.escape(_norm_label(e.get("source") or ""))
+        if uri:
+            uri_esc = html.escape(uri)
+            bits.append(
+                f"<a class='dv-pill' href='{uri_esc}' target='_blank' rel='noopener noreferrer'>"
+                f"{lab}<span class='dv-pill-src'>{src}</span></a>"
+            )
+        else:
+            bits.append(f"<span class='dv-pill'>{lab}<span class='dv-pill-src'>{src}</span></span>")
+
+    return "<div class='dv-pillwrap'>" + "".join(bits) + "</div>"
+
+
+def render_chunk_cards(chunks: List[Chunk], curated_state: CuratedState) -> str:
     css = """
     <style>
       .dv-chunk {
@@ -666,11 +906,11 @@ def render_chunk_cards(chunks: List[Chunk]) -> str:
         align-items:baseline;
         justify-content:space-between;
         gap:12px;
-        margin-bottom:10px;
+        margin-bottom:8px;
       }
       .dv-chunk-title { font-weight:800; font-size:16px; }
       .dv-chunk-meta { opacity:0.75; font-size:12px; white-space:nowrap; }
-      .dv-chunk-body { white-space:pre-wrap; opacity:0.95; }
+      .dv-chunk-body { white-space:pre-wrap; opacity:0.95; margin-top:10px; }
       .dv-box {
         background:#0b0b0b;
         color:#f4f4f4;
@@ -680,6 +920,36 @@ def render_chunk_cards(chunks: List[Chunk]) -> str:
         margin:8px 0;
         white-space:pre-wrap;
       }
+      .dv-curated {
+        border:1px solid #2a2a2a;
+        border-radius:12px;
+        padding:10px 12px;
+        background:rgba(255,255,255,0.03);
+      }
+      .dv-curated-title { font-weight:700; opacity:0.9; margin-bottom:6px; }
+      .dv-curated-empty { opacity:0.65; font-size:12px; }
+      .dv-pillwrap { display:flex; flex-wrap:wrap; gap:6px; }
+      .dv-pill {
+        display:inline-flex;
+        align-items:center;
+        gap:6px;
+        padding:5px 9px;
+        border:1px solid #2a2a2a;
+        border-radius:999px;
+        background:rgba(255,140,0,0.08);
+        color:#f4f4f4;
+        text-decoration:none;
+        font-size:12px;
+      }
+      .dv-pill:hover { border-color:#ff8c00; }
+      .dv-pill-src {
+        opacity:0.7;
+        font-size:10px;
+        padding:2px 6px;
+        border-radius:999px;
+        border:1px solid #2a2a2a;
+        background:rgba(0,0,0,0.25);
+      }
     </style>
     """
     parts = [css, "<div>"]
@@ -687,6 +957,8 @@ def render_chunk_cards(chunks: List[Chunk]) -> str:
         parts.append("<div class='dv-box'>No chunks found (no section_header items).</div>")
         parts.append("</div>")
         return "\n".join(parts)
+
+    curated_state = _ensure_state(curated_state)
 
     for ch in chunks:
         if ch.page_min is None or ch.page_max is None:
@@ -698,11 +970,19 @@ def render_chunk_cards(chunks: List[Chunk]) -> str:
 
         meta = f"{html.escape(ch.chunk_id)} {page_txt} items: {len(ch.item_idxs)}"
 
+        curated_entries = curated_for_chunk(curated_state, ch.chunk_id)
+
         parts.append("<div class='dv-chunk'>")
         parts.append("<div class='dv-chunk-head'>")
         parts.append(f"<div class='dv-chunk-title'>{html.escape(ch.title or '(untitled)')}</div>")
         parts.append(f"<div class='dv-chunk-meta'>{meta}</div>")
         parts.append("</div>")
+
+        parts.append("<div class='dv-curated'>")
+        parts.append("<div class='dv-curated-title'>Curated subjects</div>")
+        parts.append(_curated_badges_html(curated_entries))
+        parts.append("</div>")
+
         parts.append(f"<div class='dv-chunk-body'>{html.escape(ch.text or '')}</div>")
         parts.append("</div>")
 
@@ -711,85 +991,29 @@ def render_chunk_cards(chunks: List[Chunk]) -> str:
 
 
 # ============================================================
-# Chunk selector helpers (MULTI)  ASCII separator
+# Phase 5  UI helper: suggestions dropdown for selected chunk
 # ============================================================
-CHUNK_SEP = " - "  # ASCII only
-
-
-def chunk_choices(chunks: List[Chunk]) -> List[str]:
-    return ["(All chunks)"] + [f"{c.chunk_id}{CHUNK_SEP}{ascii_clean(c.title)}" for c in chunks]
-
-
-def normalize_chunk_choice(choice: Union[str, List[str], None], choices: List[str]) -> List[str]:
-    if choice is None:
-        return ["(All chunks)"]
-    if isinstance(choice, str):
-        return [choice] if choice in choices else ["(All chunks)"]
-    if isinstance(choice, list):
-        cleaned = [c for c in choice if isinstance(c, str) and c in choices]
-        return cleaned or ["(All chunks)"]
-    return ["(All chunks)"]
-
-
-def selected_chunk_ids(selected_labels: List[str]) -> Optional[set]:
-    if "(All chunks)" in selected_labels:
-        return None
-    ids = set()
-    for lab in selected_labels:
-        chunk_id = lab.split(CHUNK_SEP, 1)[0].strip()
-        if chunk_id:
-            ids.add(chunk_id)
-    return ids or None
-
-
-def selected_chunk_id_list(selected_labels: List[str]) -> Optional[List[str]]:
-    """
-    Return list of selected chunk ids.
-    None means '(All chunks)' => all chunks.
-    """
-    if "(All chunks)" in selected_labels:
-        return None
+def suggestion_label_choices_for_chunk(suggestions_view: Dict[str, Any], chunk_id: Optional[str]) -> List[str]:
+    if not chunk_id or not isinstance(suggestions_view, dict):
+        return []
+    block = suggestions_view.get(chunk_id)
+    if not isinstance(block, dict):
+        return []
+    suggs = block.get("suggestions")
+    if not isinstance(suggs, list):
+        return []
     out: List[str] = []
-    for lab in selected_labels:
-        if lab == "(All chunks)":
+    for s in suggs:
+        if not isinstance(s, dict):
             continue
-        cid = lab.split(CHUNK_SEP, 1)[0].strip()
-        if cid:
-            out.append(cid)
-    return out or None
-
-
-# ============================================================
-# Phase 4: suggest multiple chunks
-# ============================================================
-def suggest_for_chunks(
-    annif_project_id: str,
-    chunks: List[Chunk],
-    selected_ids: Optional[List[str]],
-    limit: int,
-    threshold: float,
-) -> Dict[str, Any]:
-    out: Dict[str, Any] = {}
-    want = set(selected_ids) if selected_ids is not None else None
-
-    for ch in chunks:
-        if want is not None and ch.chunk_id not in want:
-            continue
-        out[ch.chunk_id] = {
-            "title": ch.title,
-            "suggestions": annif_suggest(
-                project_id=annif_project_id,
-                text=ch.text,
-                limit=int(limit),
-                threshold=float(threshold),
-            ),
-        }
-
+        lab = _norm_label(s.get("label"))
+        if lab:
+            out.append(lab)
     return out
 
 
 # ============================================================
-# Gradio callback
+# Gradio main callback (Render)
 # ============================================================
 def load_and_render(
     uploaded_file,
@@ -801,6 +1025,7 @@ def load_and_render(
     render_limit: int,
     suggest_limit: int,
     suggest_threshold: float,
+    curated_state: CuratedState,  # Phase 5 state
 ):
     proj_choices = annif_project_choices()
     if proj_choices:
@@ -810,14 +1035,22 @@ def load_and_render(
     else:
         annif_update = gr.update(choices=[], value=None)
 
+    curated_state = _ensure_state(curated_state)
+
     if uploaded_file is None:
         dd_update = gr.update(choices=["(All chunks)"], value=["(All chunks)"])
+        sugg_dd_update = gr.update(choices=[], value=None)
+        rm_dd_update = gr.update(choices=[], value=None)
         return (
             "<div class='dv-box'>Upload a Docling JSON file first.</div>",
             {"items": 0},
             {},
+            curated_state,
+            {},
             annif_update,
             dd_update,
+            sugg_dd_update,
+            rm_dd_update,
         )
 
     data = load_json_robust(uploaded_file.name)
@@ -846,8 +1079,10 @@ def load_and_render(
         "suggest_limit": int(suggest_limit),
         "suggest_threshold": float(suggest_threshold),
         "annif_base_url": ANNIF_BASE_URL,
+        "curated_chunks": len(curated_state),
     }
 
+    # Phase 4: suggestions (all or selected)
     suggestions_view: Dict[str, Any] = {}
     if mode == "Chunks" and annif_pid:
         selected_ids = selected_chunk_id_list(selected)  # None => all chunks
@@ -859,14 +1094,105 @@ def load_and_render(
             threshold=float(suggest_threshold),
         )
 
+    # Phase 5: selected chunk for curation controls
+    cur_chunk_id = first_selected_chunk_id(selected)
+    sugg_labels = suggestion_label_choices_for_chunk(suggestions_view, cur_chunk_id)
+    sugg_dd_update = gr.update(choices=sugg_labels, value=(sugg_labels[0] if sugg_labels else None))
+
+    rm_choices = curated_choices_for_chunk(curated_state, cur_chunk_id) if cur_chunk_id else []
+    rm_dd_update = gr.update(choices=rm_choices, value=(rm_choices[0] if rm_choices else None))
+
+    curated_view = curated_state  # show raw state as JSON
+
     if mode == "Chunks":
         want = selected_chunk_ids(selected)  # None => all
         visible = [c for c in chunks if (want is None or c.chunk_id in want)]
-        html_out = render_chunk_cards(visible)
-        return (html_out, base_stats, suggestions_view, annif_update, dd_update)
+        html_out = render_chunk_cards(visible, curated_state)
+        return (
+            html_out,
+            base_stats,
+            suggestions_view,
+            curated_state,
+            curated_view,
+            annif_update,
+            dd_update,
+            sugg_dd_update,
+            rm_dd_update,
+        )
 
     html_out = render_boxes(data, items, pages, show_empty_text, int(render_limit))
-    return (html_out, base_stats, suggestions_view, annif_update, dd_update)
+    return (
+        html_out,
+        base_stats,
+        suggestions_view,
+        curated_state,
+        curated_view,
+        annif_update,
+        dd_update,
+        sugg_dd_update,
+        rm_dd_update,
+    )
+
+
+# ============================================================
+# Phase 5 callbacks (curation actions)
+# ============================================================
+def _selected_chunk_for_actions(chunk_choice: Union[str, List[str], None]) -> Optional[str]:
+    if chunk_choice is None:
+        return None
+    if isinstance(chunk_choice, str):
+        selected = [chunk_choice]
+    elif isinstance(chunk_choice, list):
+        selected = [c for c in chunk_choice if isinstance(c, str)]
+    else:
+        selected = []
+    return first_selected_chunk_id(selected)
+
+
+def on_accept_suggestion(
+    curated_state: CuratedState,
+    chunk_choice: Union[str, List[str], None],
+    suggestion_label: Optional[str],
+    suggestions_view: Dict[str, Any],
+):
+    curated_state = _ensure_state(curated_state)
+    chunk_id = _selected_chunk_for_actions(chunk_choice)
+    curated_state = accept_suggestion_to_state(curated_state, chunk_id, suggestion_label, suggestions_view)
+
+    rm_choices = curated_choices_for_chunk(curated_state, chunk_id) if chunk_id else []
+    rm_dd_update = gr.update(choices=rm_choices, value=(rm_choices[0] if rm_choices else None))
+
+    return curated_state, curated_state, rm_dd_update
+
+
+def on_add_manual(
+    curated_state: CuratedState,
+    chunk_choice: Union[str, List[str], None],
+    manual_label: Optional[str],
+):
+    curated_state = _ensure_state(curated_state)
+    chunk_id = _selected_chunk_for_actions(chunk_choice)
+    curated_state = add_manual_to_state(curated_state, chunk_id, manual_label)
+
+    rm_choices = curated_choices_for_chunk(curated_state, chunk_id) if chunk_id else []
+    rm_dd_update = gr.update(choices=rm_choices, value=(rm_choices[0] if rm_choices else None))
+
+    return curated_state, curated_state, gr.update(value=""), rm_dd_update
+
+
+def on_remove_curated(
+    curated_state: CuratedState,
+    chunk_choice: Union[str, List[str], None],
+    curated_item: Optional[str],
+):
+    curated_state = _ensure_state(curated_state)
+    chunk_id = _selected_chunk_for_actions(chunk_choice)
+    curated_state = remove_curated_from_state(curated_state, chunk_id, curated_item)
+
+    rm_choices = curated_choices_for_chunk(curated_state, chunk_id) if chunk_id else []
+    rm_dd_update = gr.update(choices=rm_choices, value=(rm_choices[0] if rm_choices else None))
+
+    return curated_state, curated_state, rm_dd_update
 
 
 # ============================================================
@@ -874,6 +1200,8 @@ def load_and_render(
 # ============================================================
 with gr.Blocks(title="Docling JSON Renderer") as demo:
     file_in = gr.File(file_types=[".json"], label="Docling JSON")
+
+    curated_state = gr.State({})  # Phase 5: per-chunk curated subjects
 
     proj_choices = annif_project_choices()
     default_proj = proj_choices[0] if proj_choices else None
@@ -902,10 +1230,30 @@ with gr.Blocks(title="Docling JSON Renderer") as demo:
         suggest_threshold = gr.Slider(0.0, 1.0, value=0.0, step=0.01, label="Annif suggest threshold")
 
     btn = gr.Button("Render")
+
     html_view = gr.HTML()
     stats = gr.JSON()
     suggestions_view = gr.JSON(label="Annif suggestions (all / selected chunks)")
 
+    # ----------------------------
+    # Phase 5: Human Curation panel
+    # ----------------------------
+    with gr.Accordion("Human curation (per chunk)", open=True):
+        with gr.Row():
+            suggestion_pick = gr.Dropdown(choices=[], value=None, label="Pick Annif suggestion (selected chunk)")
+            accept_btn = gr.Button("Accept suggestion")
+
+        with gr.Row():
+            manual_in = gr.Textbox(label="Manual subject entry", placeholder="e.g. sanitary appliance")
+            manual_btn = gr.Button("Add manual subject")
+
+        with gr.Row():
+            curated_pick = gr.Dropdown(choices=[], value=None, label="Remove curated subject (selected chunk)")
+            remove_btn = gr.Button("Remove subject")
+
+        curated_view = gr.JSON(label="Curated subjects state (all chunks)")
+
+    # Render callback (updates suggestion_pick + curated_pick)
     btn.click(
         load_and_render,
         [
@@ -918,8 +1266,40 @@ with gr.Blocks(title="Docling JSON Renderer") as demo:
             render_limit,
             suggest_limit,
             suggest_threshold,
+            curated_state,
         ],
-        [html_view, stats, suggestions_view, annif_project, chunk_select],
+        [
+            html_view,
+            stats,
+            suggestions_view,
+            curated_state,
+            curated_view,
+            annif_project,
+            chunk_select,
+            suggestion_pick,
+            curated_pick,
+        ],
+    )
+
+    # Accept suggestion -> updates curated_state + curated_view + curated_pick
+    accept_btn.click(
+        on_accept_suggestion,
+        [curated_state, chunk_select, suggestion_pick, suggestions_view],
+        [curated_state, curated_view, curated_pick],
+    )
+
+    # Add manual -> updates curated_state + curated_view + clears manual_in + curated_pick
+    manual_btn.click(
+        on_add_manual,
+        [curated_state, chunk_select, manual_in],
+        [curated_state, curated_view, manual_in, curated_pick],
+    )
+
+    # Remove curated -> updates curated_state + curated_view + curated_pick
+    remove_btn.click(
+        on_remove_curated,
+        [curated_state, chunk_select, curated_pick],
+        [curated_state, curated_view, curated_pick],
     )
 
 if __name__ == "__main__":
