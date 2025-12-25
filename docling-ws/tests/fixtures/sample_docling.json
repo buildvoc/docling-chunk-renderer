@@ -1,0 +1,30 @@
+{
+  "schema_name": "docling_document",
+  "version": "0.1",
+  "texts": [
+    {
+      "id": "t-1",
+      "label": "body",
+      "text": "Page one sample text that is intentionally long enough to pass the filtering logic for nodes.",
+      "content_layer": "body",
+      "provenance": [
+        {
+          "page_no": 1,
+          "bbox": [0, 0, 10, 10]
+        }
+      ]
+    },
+    {
+      "id": "t-2",
+      "label": "body",
+      "text": "Second page carries another chunk of text that should become its own node when building the graph.",
+      "content_layer": "body",
+      "provenance": [
+        {
+          "page_no": 2,
+          "bbox": [0, 0, 12, 12]
+        }
+      ]
+    }
+  ]
+}

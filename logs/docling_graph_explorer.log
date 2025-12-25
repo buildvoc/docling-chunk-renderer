@@ -1,0 +1,907 @@
+2025-12-21 10:53:48,090 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:53:48,092 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:53:48,094 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 10:53:48,096 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:53:48,099 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:53:48,100 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 10:53:48,370 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:53:48,371 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 10:53:48,371 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 10:53:48,372 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 10:54:01,046 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:54:01,047 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:54:01,049 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 10:54:01,053 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:54:01,056 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:54:01,057 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 10:54:01,440 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:54:01,440 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 10:54:01,440 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 10:54:01,441 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 10:54:21,205 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:54:21,207 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:54:21,208 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 10:54:21,210 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:54:21,213 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:54:21,214 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 10:54:21,516 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 10:54:21,516 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 10:54:21,517 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 10:54:21,517 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 11:36:40,597 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 11:36:40,599 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 11:36:40,600 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 11:36:40,602 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 11:36:40,604 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 11:36:40,604 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 11:36:40,891 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 11:36:40,892 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 11:36:40,892 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 11:36:40,892 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 11:36:40,893 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 11:36:40,894 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 11:36:40,896 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 11:36:40,896 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 11:45:20,936 [INFO] docling_graph_explorer: Starting Docling Graph Explorer standalone commit=476442f port=8055 dash_port=8056
+2025-12-21 11:50:29,414 [INFO] docling_graph_explorer: Starting Docling Graph Explorer standalone commit=476442f port=8055 dash_port=8056
+2025-12-21 12:19:08,412 [INFO] docling_graph_explorer: Starting Docling Graph Explorer standalone commit=476442f port=8055 dash_port=8056
+2025-12-21 12:32:49,190 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:32:49,192 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:32:49,193 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:32:49,195 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:32:49,197 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:32:49,197 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:32:49,437 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:32:49,438 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:32:49,438 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:32:49,438 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 12:32:49,440 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:32:49,441 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:32:49,442 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:32:49,443 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:32:49,447 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:32:49,447 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 12:34:50,057 [INFO] docling_graph_explorer: Starting Docling Graph Explorer standalone commit=476442f port=8055 dash_port=8056
+2025-12-21 12:36:04,750 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 12:36:04,750 [INFO] docling_graph_explorer: cache miss hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30
+2025-12-21 12:36:04,846 [INFO] docling_graph_explorer: built graph hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 12:36:04,847 [INFO] docling_graph_explorer: cache store hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 12:37:08,999 [INFO] docling_graph_explorer: loaded doc hash=1b1c7766209da68cec41d45ac3336e8a7f0a3bd8fd332125791176de574230c0 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 12:37:09,000 [INFO] docling_graph_explorer: cache miss hash=1b1c7766209da68cec41d45ac3336e8a7f0a3bd8fd332125791176de574230c0
+2025-12-21 12:37:09,603 [INFO] docling_graph_explorer: built graph hash=1b1c7766209da68cec41d45ac3336e8a7f0a3bd8fd332125791176de574230c0 nodes=1070 edges=1069
+2025-12-21 12:37:09,604 [INFO] docling_graph_explorer: cache store hash=1b1c7766209da68cec41d45ac3336e8a7f0a3bd8fd332125791176de574230c0 nodes=1070 edges=1069
+2025-12-21 12:37:40,788 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 12:37:40,788 [INFO] docling_graph_explorer: cache hit hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 age=95.94s
+2025-12-21 12:46:12,330 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:12,332 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:12,333 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:46:12,335 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:12,337 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:12,338 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:46:12,655 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:12,656 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:46:12,656 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:46:12,656 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 12:46:12,658 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:12,658 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:46:12,660 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:12,661 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:46:12,664 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:12,665 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 12:46:55,047 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:55,049 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:55,050 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:46:55,051 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:55,053 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:55,054 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:46:55,370 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:55,371 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:46:55,371 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:46:55,371 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 12:46:55,373 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:55,374 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:46:55,376 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:55,376 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:46:55,380 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:46:55,380 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 12:47:06,785 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:47:06,787 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:47:06,788 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:47:06,789 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:47:06,791 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:47:06,792 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:47:07,105 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:47:07,106 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:47:07,106 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:47:07,106 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 12:47:07,107 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:47:07,108 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:47:07,110 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:47:07,110 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 12:47:07,114 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 12:47:07,114 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 12:48:40,676 [INFO] docling_graph_explorer: Starting Docling Graph Explorer standalone commit=476442f port=8055 dash_port=8056
+2025-12-21 12:48:56,474 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 12:48:56,474 [INFO] docling_graph_explorer: cache miss hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30
+2025-12-21 12:48:56,583 [INFO] docling_graph_explorer: built graph hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 12:48:56,583 [INFO] docling_graph_explorer: cache store hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 12:52:59,105 [INFO] docling_graph_explorer: Starting Docling Graph Explorer standalone commit=476442f port=8055 dash_port=8056
+2025-12-21 12:54:36,106 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 12:54:36,106 [INFO] docling_graph_explorer: cache miss hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30
+2025-12-21 12:54:36,217 [INFO] docling_graph_explorer: built graph hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 12:54:36,218 [INFO] docling_graph_explorer: cache store hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 12:56:18,482 [INFO] docling_graph_explorer: loaded doc hash=1b1c7766209da68cec41d45ac3336e8a7f0a3bd8fd332125791176de574230c0 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 12:56:18,483 [INFO] docling_graph_explorer: cache miss hash=1b1c7766209da68cec41d45ac3336e8a7f0a3bd8fd332125791176de574230c0
+2025-12-21 12:56:19,093 [INFO] docling_graph_explorer: built graph hash=1b1c7766209da68cec41d45ac3336e8a7f0a3bd8fd332125791176de574230c0 nodes=1070 edges=1069
+2025-12-21 12:56:19,094 [INFO] docling_graph_explorer: cache store hash=1b1c7766209da68cec41d45ac3336e8a7f0a3bd8fd332125791176de574230c0 nodes=1070 edges=1069
+2025-12-21 13:10:06,313 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:10:06,315 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:10:06,317 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:10:06,319 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:10:06,321 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:10:06,322 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:10:06,673 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:10:06,673 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:10:06,673 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:10:06,673 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 13:10:06,676 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:10:06,676 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:10:06,678 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:10:06,679 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:10:06,682 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:10:06,682 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 13:11:49,394 [INFO] docling_graph_explorer: Starting Docling Graph Explorer standalone commit=476442f port=8055 dash_port=8056
+2025-12-21 13:12:04,025 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 13:12:04,025 [INFO] docling_graph_explorer: cache miss hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30
+2025-12-21 13:12:04,131 [INFO] docling_graph_explorer: built graph hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 13:12:04,131 [INFO] docling_graph_explorer: cache store hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 13:20:05,983 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:20:05,985 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:20:05,987 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:20:05,988 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:20:05,990 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:20:05,991 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:20:06,290 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:20:06,290 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:20:06,290 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:20:06,290 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 13:20:06,292 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:20:06,293 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:20:06,294 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:20:06,295 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:20:06,298 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:20:06,298 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 13:20:06,299 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 13:20:07,167 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:20:07,168 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:24:48,631 [INFO] docling_graph_explorer: Starting Docling Graph Explorer standalone commit=476442f port=8055 dash_port=8056
+2025-12-21 13:32:21,005 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:21,007 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:21,008 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:32:21,009 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:21,011 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:21,011 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:32:21,326 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:21,327 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:32:21,327 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:32:21,327 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 13:32:21,329 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:21,329 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:32:21,331 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:21,332 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:32:21,335 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:21,336 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 13:32:21,336 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 13:32:22,410 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:22,410 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:32:46,766 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:46,768 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:46,769 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:32:46,772 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:46,774 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:46,774 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:32:47,015 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:47,016 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:32:47,016 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:32:47,016 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 13:32:47,018 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:47,019 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:32:47,021 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:47,022 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:32:47,025 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:47,026 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 13:32:47,026 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 13:32:48,096 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:32:48,096 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:11,148 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:11,150 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:11,151 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:11,153 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:11,155 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:11,156 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:11,479 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:11,479 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:11,479 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:11,480 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 13:33:11,481 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:11,482 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:11,483 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:11,484 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:11,488 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:11,488 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 13:33:11,488 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 13:33:12,527 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:12,528 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:35,831 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:35,833 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:35,835 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:35,837 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:35,840 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:35,840 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:36,170 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:36,171 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:36,171 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:36,171 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 13:33:36,173 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:36,173 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:36,175 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:36,176 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:36,179 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:36,180 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 13:33:36,180 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 13:33:37,188 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:37,188 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:52,709 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:52,711 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:52,713 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:52,715 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:52,717 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:52,718 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:52,969 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:52,970 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:52,970 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:52,970 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 13:33:52,972 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:52,972 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:52,975 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:52,975 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:33:52,979 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:52,979 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 13:33:52,980 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 13:33:54,085 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:33:54,085 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:34:06,680 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:34:06,682 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:34:06,684 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:34:06,685 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:34:06,687 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:34:06,688 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:34:07,030 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:34:07,031 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:34:07,031 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:34:07,032 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 13:34:07,034 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:34:07,035 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:34:07,036 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:34:07,037 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:34:07,041 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:34:07,041 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 13:34:07,041 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 13:34:07,916 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:34:07,916 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:34:34,497 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port commit=476442f listening on 8055 (dash mounted at /dash)
+2025-12-21 13:34:55,558 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 13:34:55,558 [INFO] docling_graph_explorer: cache miss hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30
+2025-12-21 13:34:55,671 [INFO] docling_graph_explorer: built graph hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 13:34:55,671 [INFO] docling_graph_explorer: cache store hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 13:34:55,672 [INFO] docling_graph_explorer: upload ok doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 cache=cache_miss initial_visible=5 nodes=14 edges=8
+2025-12-21 13:34:55,750 [INFO] docling_graph_explorer: window update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 nodes=14 edges=8
+2025-12-21 13:40:13,758 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port commit=476442f listening on 8055 (dash mounted at /dash)
+2025-12-21 13:40:24,491 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 13:40:24,491 [INFO] docling_graph_explorer: cache miss hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30
+2025-12-21 13:40:24,602 [INFO] docling_graph_explorer: built graph hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 13:40:24,602 [INFO] docling_graph_explorer: cache store hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 13:40:24,603 [INFO] docling_graph_explorer: upload ok doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 cache=cache_miss initial_visible=5 nodes=14 edges=8
+2025-12-21 13:40:24,667 [INFO] docling_graph_explorer: window update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 nodes=14 edges=8
+2025-12-21 13:51:39,282 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:39,284 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:39,285 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:51:39,287 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:39,288 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:39,289 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:51:39,655 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:39,655 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:51:39,656 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:51:39,656 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 13:51:39,658 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:39,658 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:51:39,660 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:39,661 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:51:39,664 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:39,664 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 13:51:39,664 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 13:51:40,556 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:40,557 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:51:53,596 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:53,599 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:53,600 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:51:53,602 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:53,604 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:53,605 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:51:53,902 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:53,903 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:51:53,903 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:51:53,903 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 13:51:53,905 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:53,905 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:51:53,907 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:53,907 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:51:53,911 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:53,911 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 13:51:53,911 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 13:51:54,734 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:51:54,734 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:52:22,489 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port commit=476442f listening on 8055 (dash mounted at /dash)
+2025-12-21 13:52:33,581 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 13:52:33,581 [INFO] docling_graph_explorer: cache miss hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30
+2025-12-21 13:52:33,702 [INFO] docling_graph_explorer: built graph hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 13:52:33,702 [INFO] docling_graph_explorer: cache store hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 13:52:33,703 [INFO] docling_graph_explorer: upload ok doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 cache=cache_miss initial_visible=5 nodes=14 edges=8
+2025-12-21 13:52:33,769 [INFO] docling_graph_explorer: window update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 nodes=14 edges=8
+2025-12-21 13:57:01,928 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 13:57:01,928 [INFO] docling_graph_explorer: cache miss hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30
+2025-12-21 13:57:02,032 [INFO] docling_graph_explorer: built graph hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 13:57:02,033 [INFO] docling_graph_explorer: cache store hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 13:57:02,034 [INFO] docling_graph_explorer: upload ok doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 cache=cache_miss initial_visible=5 nodes=14 edges=8
+2025-12-21 13:57:16,604 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:57:16,607 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:57:16,608 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:57:16,611 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:57:16,613 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:57:16,614 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:57:16,981 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:57:16,982 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:57:16,982 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:57:16,982 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 13:57:16,985 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:57:16,985 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:57:16,988 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:57:16,988 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:57:16,992 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:57:16,993 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 13:57:16,993 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 13:57:18,032 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 13:57:18,032 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 13:57:47,451 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port commit=476442f listening on 8055 (dash mounted at /dash)
+2025-12-21 13:57:57,037 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 13:57:57,038 [INFO] docling_graph_explorer: cache miss hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30
+2025-12-21 13:57:57,147 [INFO] docling_graph_explorer: built graph hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 13:57:57,148 [INFO] docling_graph_explorer: cache store hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 13:57:57,148 [INFO] docling_graph_explorer: upload ok doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 cache=cache_miss initial_visible=5 nodes=14 edges=8
+2025-12-21 13:57:57,276 [INFO] docling_graph_explorer: window update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 nodes=14 edges=8
+2025-12-21 14:02:23,856 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port commit=476442f listening on 8055 (dash mounted at /dash)
+2025-12-21 14:49:44,597 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:49:44,599 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:49:44,600 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:49:44,602 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:49:44,604 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:49:44,604 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:49:45,030 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:49:45,031 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:49:45,031 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:49:45,031 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 14:49:45,033 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:49:45,034 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:49:45,035 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:49:45,036 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:49:45,045 [INFO] docling_graph_explorer: dash selection set node_id=node-1
+2025-12-21 14:49:45,049 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:49:45,049 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.02s
+2025-12-21 14:49:45,049 [INFO] docling_graph_explorer: dash window_state update doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 visible=3 meta_nodes=3 meta_edges=0 elements=3
+2025-12-21 14:49:45,049 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 14:49:45,961 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:49:45,961 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:49:45,963 [INFO] docling_graph_explorer: dash window_state update doc_hash=abc visible=1 meta_nodes=1 meta_edges=1 elements=2
+2025-12-21 14:50:20,411 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:50:20,413 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:50:20,414 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:50:20,416 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:50:20,418 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:50:20,419 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:50:20,738 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:50:20,738 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:50:20,739 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:50:20,739 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 14:50:20,740 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:50:20,741 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:50:20,743 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:50:20,743 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:50:20,744 [INFO] docling_graph_explorer: dash selection set node_id=chunk-2
+2025-12-21 14:50:20,745 [INFO] docling_graph_explorer: dash selection set node_id=node-1
+2025-12-21 14:50:20,749 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:50:20,749 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.01s
+2025-12-21 14:50:20,749 [INFO] docling_graph_explorer: dash window_state update doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 visible=3 meta_nodes=3 meta_edges=0 elements=3
+2025-12-21 14:50:20,749 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 14:50:21,635 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 14:50:21,636 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 14:50:21,637 [INFO] docling_graph_explorer: dash window_state update doc_hash=abc visible=1 meta_nodes=1 meta_edges=1 elements=2
+2025-12-21 14:52:05,691 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port commit=476442f listening on 8055 (dash mounted at /dash)
+2025-12-21 14:52:05,708 [INFO] docling_graph_explorer: dash window_state update doc_hash=None visible=0 meta_nodes=None meta_edges=None elements=0
+2025-12-21 14:52:19,734 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 14:52:19,735 [INFO] docling_graph_explorer: cache miss hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30
+2025-12-21 14:52:19,840 [INFO] docling_graph_explorer: built graph hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 14:52:19,841 [INFO] docling_graph_explorer: cache store hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 14:52:19,841 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 14:52:19,842 [INFO] docling_graph_explorer: upload ok doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 cache=cache_miss initial_visible=5 nodes=14 edges=8
+2025-12-21 14:52:19,920 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 14:52:19,920 [INFO] docling_graph_explorer: window update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 nodes=14 edges=8
+2025-12-21 14:53:20,815 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 14:53:20,816 [INFO] docling_graph_explorer: cache hit hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 age=60.98s
+2025-12-21 14:53:20,816 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 14:53:20,817 [INFO] docling_graph_explorer: upload ok doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 cache=cache_hit initial_visible=5 nodes=14 edges=8
+2025-12-21 14:53:20,936 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 14:53:20,936 [INFO] docling_graph_explorer: window update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 nodes=14 edges=8
+2025-12-21 15:03:12,447 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port commit=476442f listening on 8055 (dash mounted at /dash)
+2025-12-21 15:03:12,464 [INFO] docling_graph_explorer: dash window_state update doc_hash=None visible=0 meta_nodes=None meta_edges=None elements=0
+2025-12-21 15:05:48,002 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 15:05:48,002 [INFO] docling_graph_explorer: cache miss hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30
+2025-12-21 15:05:48,101 [INFO] docling_graph_explorer: built graph hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 15:05:48,101 [INFO] docling_graph_explorer: cache store hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 15:05:48,102 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 15:05:48,102 [INFO] docling_graph_explorer: upload ok doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 cache=cache_miss initial_visible=5 nodes=14 edges=8
+2025-12-21 15:05:48,208 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 15:05:48,208 [INFO] docling_graph_explorer: window update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 nodes=14 edges=8
+2025-12-21 15:08:02,574 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 15:08:02,574 [INFO] docling_graph_explorer: cache hit hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 age=134.47s
+2025-12-21 15:08:02,575 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 15:08:02,575 [INFO] docling_graph_explorer: upload ok doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 cache=cache_hit initial_visible=5 nodes=14 edges=8
+2025-12-21 15:08:02,641 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 15:08:02,642 [INFO] docling_graph_explorer: window update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 nodes=14 edges=8
+2025-12-21 15:10:58,045 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 15:10:58,045 [INFO] docling_graph_explorer: cache hit hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 age=309.94s
+2025-12-21 15:10:58,046 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 15:10:58,046 [INFO] docling_graph_explorer: upload ok doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 cache=cache_hit initial_visible=5 nodes=14 edges=8
+2025-12-21 15:10:58,175 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 15:10:58,175 [INFO] docling_graph_explorer: window update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 nodes=14 edges=8
+2025-12-21 15:27:08,804 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port commit=476442f listening on 8055 (dash mounted at /dash)
+2025-12-21 15:27:08,820 [INFO] docling_graph_explorer: dash window_state update doc_hash=None visible=0 meta_nodes=None meta_edges=None elements=0
+2025-12-21 15:46:40,452 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:46:40,454 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:46:40,455 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:46:40,457 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:46:40,459 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:46:40,459 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:46:40,697 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:46:40,698 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:46:40,698 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:46:40,699 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 15:46:40,700 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:46:40,701 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:46:40,702 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:46:40,703 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:46:40,703 [INFO] docling_graph_explorer: dash selection set node_id=chunk-2
+2025-12-21 15:46:40,705 [INFO] docling_graph_explorer: dash selection set node_id=node-1
+2025-12-21 15:46:41,528 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:46:41,529 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.83s
+2025-12-21 15:46:41,529 [INFO] docling_graph_explorer: dash window_state update doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 visible=3 meta_nodes=3 meta_edges=0 elements=3
+2025-12-21 15:46:41,529 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 15:46:42,379 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:46:42,380 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:46:42,381 [INFO] docling_graph_explorer: dash window_state update doc_hash=abc visible=1 meta_nodes=1 meta_edges=1 elements=2
+2025-12-21 15:47:14,001 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:14,003 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:14,004 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:14,005 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:14,007 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:14,007 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:14,252 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:14,253 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:14,253 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:14,253 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 15:47:14,256 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:14,256 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:14,258 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:14,259 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:14,259 [INFO] docling_graph_explorer: dash selection set node_id=chunk-2
+2025-12-21 15:47:14,261 [INFO] docling_graph_explorer: dash selection set node_id=node-1
+2025-12-21 15:47:15,073 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:15,073 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.82s
+2025-12-21 15:47:15,073 [INFO] docling_graph_explorer: dash window_state update doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 visible=3 meta_nodes=3 meta_edges=0 elements=3
+2025-12-21 15:47:15,073 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 15:47:15,910 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:15,911 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:15,913 [INFO] docling_graph_explorer: dash window_state update doc_hash=abc visible=1 meta_nodes=1 meta_edges=1 elements=2
+2025-12-21 15:47:49,196 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:49,199 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:49,200 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:49,202 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:49,204 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:49,205 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:49,450 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:49,450 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:49,450 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:49,451 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 15:47:49,452 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:49,453 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:49,455 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:49,456 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:49,456 [INFO] docling_graph_explorer: dash selection set node_id=chunk-2
+2025-12-21 15:47:49,457 [INFO] docling_graph_explorer: dash selection set node_id=node-1
+2025-12-21 15:47:49,839 [INFO] docling_graph_explorer: dash asset override: cytoscape.min.js requested; returning 404
+2025-12-21 15:47:50,176 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:50,176 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.73s
+2025-12-21 15:47:50,176 [INFO] docling_graph_explorer: dash window_state update doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 visible=3 meta_nodes=3 meta_edges=0 elements=3
+2025-12-21 15:47:50,176 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 15:47:51,019 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:47:51,019 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:47:51,021 [INFO] docling_graph_explorer: dash window_state update doc_hash=abc visible=1 meta_nodes=1 meta_edges=1 elements=2
+2025-12-21 15:48:44,468 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port commit=476442f listening on 8055 (dash mounted at /dash)
+2025-12-21 15:48:44,485 [INFO] docling_graph_explorer: dash window_state update doc_hash=None visible=0 meta_nodes=None meta_edges=None elements=0
+2025-12-21 15:48:56,824 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 15:48:56,824 [INFO] docling_graph_explorer: cache miss hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30
+2025-12-21 15:48:56,930 [INFO] docling_graph_explorer: built graph hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 15:48:56,931 [INFO] docling_graph_explorer: cache store hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 15:48:56,931 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 15:48:56,931 [INFO] docling_graph_explorer: upload ok doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 cache=cache_miss initial_visible=5 nodes=14 edges=8
+2025-12-21 15:48:57,013 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 15:48:57,013 [INFO] docling_graph_explorer: window update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 nodes=14 edges=8
+2025-12-21 15:55:48,936 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:55:48,938 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:55:48,939 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:55:48,941 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:55:48,943 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:55:48,944 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:55:49,166 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:55:49,166 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:55:49,167 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:55:49,167 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 15:55:49,169 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:55:49,169 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:55:49,171 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:55:49,171 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:55:49,171 [INFO] docling_graph_explorer: dash selection set node_id=chunk-2
+2025-12-21 15:55:49,173 [INFO] docling_graph_explorer: dash selection set node_id=node-1
+2025-12-21 15:55:49,529 [INFO] docling_graph_explorer: dash asset override: cytoscape.min.js requested; returning 404
+2025-12-21 15:55:49,975 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:55:49,975 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.81s
+2025-12-21 15:55:49,975 [INFO] docling_graph_explorer: dash window_state update doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 visible=3 meta_nodes=3 meta_edges=0 elements=3
+2025-12-21 15:55:49,976 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 15:55:50,787 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:55:50,787 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:55:50,789 [INFO] docling_graph_explorer: dash window_state update doc_hash=abc visible=1 meta_nodes=1 meta_edges=1 elements=2
+2025-12-21 15:56:19,612 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:56:19,614 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:56:19,615 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:56:19,617 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:56:19,618 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:56:19,619 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:56:19,887 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:56:19,888 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:56:19,888 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:56:19,888 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 15:56:19,890 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:56:19,890 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:56:19,892 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:56:19,892 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:56:19,892 [INFO] docling_graph_explorer: dash selection set node_id=chunk-2
+2025-12-21 15:56:19,894 [INFO] docling_graph_explorer: dash selection set node_id=node-1
+2025-12-21 15:56:20,260 [INFO] docling_graph_explorer: dash asset override: cytoscape.min.js requested; returning 404
+2025-12-21 15:56:20,547 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:56:20,548 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.66s
+2025-12-21 15:56:20,548 [INFO] docling_graph_explorer: dash window_state update doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 visible=3 meta_nodes=3 meta_edges=0 elements=3
+2025-12-21 15:56:20,548 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 15:56:21,457 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 15:56:21,458 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 15:56:21,460 [INFO] docling_graph_explorer: dash window_state update doc_hash=abc visible=1 meta_nodes=1 meta_edges=1 elements=2
+2025-12-21 15:57:46,828 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port commit=476442f listening on 8055 (dash mounted at /dash)
+2025-12-21 15:57:46,845 [INFO] docling_graph_explorer: dash window_state update doc_hash=None visible=0 meta_nodes=None meta_edges=None elements=0
+2025-12-21 15:58:04,386 [INFO] docling_graph_explorer: loaded doc hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 15:58:04,386 [INFO] docling_graph_explorer: cache miss hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30
+2025-12-21 15:58:04,492 [INFO] docling_graph_explorer: built graph hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 15:58:04,492 [INFO] docling_graph_explorer: cache store hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 nodes=436 edges=435
+2025-12-21 15:58:04,492 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 15:58:04,493 [INFO] docling_graph_explorer: upload ok doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 cache=cache_miss initial_visible=5 nodes=14 edges=8
+2025-12-21 15:58:04,627 [INFO] docling_graph_explorer: dash window_state update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 15:58:04,627 [INFO] docling_graph_explorer: window update doc_hash=84feda6ede810ad2ebb9add3eb9b44c13a833b8d863972e74a9ec6eb41d03f30 visible=5 nodes=14 edges=8
+2025-12-21 16:03:03,477 [INFO] docling_graph_explorer: loaded doc hash=48a26b906635e7c070a5095ec931d6e4abc8c8057936d05d388931565df76312 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 16:03:03,477 [INFO] docling_graph_explorer: cache miss hash=48a26b906635e7c070a5095ec931d6e4abc8c8057936d05d388931565df76312
+2025-12-21 16:03:03,714 [INFO] docling_graph_explorer: built graph hash=48a26b906635e7c070a5095ec931d6e4abc8c8057936d05d388931565df76312 nodes=668 edges=667
+2025-12-21 16:03:03,714 [INFO] docling_graph_explorer: cache store hash=48a26b906635e7c070a5095ec931d6e4abc8c8057936d05d388931565df76312 nodes=668 edges=667
+2025-12-21 16:03:03,715 [INFO] docling_graph_explorer: dash window_state update doc_hash=48a26b906635e7c070a5095ec931d6e4abc8c8057936d05d388931565df76312 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 16:03:03,715 [INFO] docling_graph_explorer: upload ok doc_hash=48a26b906635e7c070a5095ec931d6e4abc8c8057936d05d388931565df76312 cache=cache_miss initial_visible=5 nodes=14 edges=8
+2025-12-21 16:03:03,863 [INFO] docling_graph_explorer: dash window_state update doc_hash=48a26b906635e7c070a5095ec931d6e4abc8c8057936d05d388931565df76312 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 16:03:03,863 [INFO] docling_graph_explorer: window update doc_hash=48a26b906635e7c070a5095ec931d6e4abc8c8057936d05d388931565df76312 visible=5 nodes=14 edges=8
+2025-12-21 16:03:34,076 [INFO] docling_graph_explorer: loaded doc hash=fb6c3b38fbe0e4b81bf6ba1780f582fcdd40973517b1fe60413853faea2e23aa keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 16:03:34,081 [INFO] docling_graph_explorer: cache miss hash=fb6c3b38fbe0e4b81bf6ba1780f582fcdd40973517b1fe60413853faea2e23aa
+2025-12-21 16:03:34,386 [INFO] docling_graph_explorer: built graph hash=fb6c3b38fbe0e4b81bf6ba1780f582fcdd40973517b1fe60413853faea2e23aa nodes=766 edges=765
+2025-12-21 16:03:34,386 [INFO] docling_graph_explorer: cache store hash=fb6c3b38fbe0e4b81bf6ba1780f582fcdd40973517b1fe60413853faea2e23aa nodes=766 edges=765
+2025-12-21 16:03:34,387 [INFO] docling_graph_explorer: dash window_state update doc_hash=fb6c3b38fbe0e4b81bf6ba1780f582fcdd40973517b1fe60413853faea2e23aa visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 16:03:34,388 [INFO] docling_graph_explorer: upload ok doc_hash=fb6c3b38fbe0e4b81bf6ba1780f582fcdd40973517b1fe60413853faea2e23aa cache=cache_miss initial_visible=5 nodes=14 edges=8
+2025-12-21 16:03:34,499 [INFO] docling_graph_explorer: dash window_state update doc_hash=fb6c3b38fbe0e4b81bf6ba1780f582fcdd40973517b1fe60413853faea2e23aa visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 16:03:34,500 [INFO] docling_graph_explorer: window update doc_hash=fb6c3b38fbe0e4b81bf6ba1780f582fcdd40973517b1fe60413853faea2e23aa visible=5 nodes=14 edges=8
+2025-12-21 16:04:14,455 [INFO] docling_graph_explorer: loaded doc hash=48a26b906635e7c070a5095ec931d6e4abc8c8057936d05d388931565df76312 keys=body,form_items,furniture,groups,key_value_items,name,origin,pages,pictures,schema_name,tables,texts,version
+2025-12-21 16:04:14,455 [INFO] docling_graph_explorer: cache hit hash=48a26b906635e7c070a5095ec931d6e4abc8c8057936d05d388931565df76312 age=70.74s
+2025-12-21 16:04:14,456 [INFO] docling_graph_explorer: dash window_state update doc_hash=48a26b906635e7c070a5095ec931d6e4abc8c8057936d05d388931565df76312 visible=5 meta_nodes=14 meta_edges=8 elements=22
+2025-12-21 16:04:14,456 [INFO] docling_graph_explorer: upload ok doc_hash=48a26b906635e7c070a5095ec931d6e4abc8c8057936d05d388931565df76312 cache=cache_hit initial_visible=5 nodes=14 edges=8
+2025-12-21 16:11:12,142 [INFO] docling_graph_explorer: loaded doc hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 keys=groups,key_value_items,pages,pictures,schema_name,tables,texts,version
+2025-12-21 16:11:12,143 [INFO] docling_graph_explorer: cache miss hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0
+2025-12-21 16:11:12,143 [INFO] docling_graph_explorer: built graph hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 nodes=2 edges=1
+2025-12-21 16:11:12,143 [INFO] docling_graph_explorer: cache store hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 nodes=2 edges=1
+2025-12-21 16:11:12,143 [INFO] docling_graph_explorer: dash window_state update doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 visible=1 meta_nodes=2 meta_edges=1 elements=3
+2025-12-21 16:11:12,144 [INFO] docling_graph_explorer: upload ok doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 cache=cache_miss initial_visible=1 nodes=2 edges=1
+2025-12-21 16:11:12,241 [INFO] docling_graph_explorer: dash window_state update doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 visible=1 meta_nodes=2 meta_edges=1 elements=3
+2025-12-21 16:11:12,241 [INFO] docling_graph_explorer: window update doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 visible=1 nodes=2 edges=1
+2025-12-21 16:29:34,322 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port commit=476442f listening on 8055 (dash mounted at /dash)
+2025-12-21 16:29:34,339 [INFO] docling_graph_explorer: dash window_state update doc_hash=None visible=0 meta_nodes=None meta_edges=None elements=0
+2025-12-21 16:29:48,462 [INFO] docling_graph_explorer: loaded doc hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 keys=groups,key_value_items,pages,pictures,schema_name,tables,texts,version
+2025-12-21 16:29:48,463 [INFO] docling_graph_explorer: cache miss hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0
+2025-12-21 16:29:48,464 [INFO] docling_graph_explorer: built graph hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 nodes=2 edges=1
+2025-12-21 16:29:48,464 [INFO] docling_graph_explorer: cache store hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 nodes=2 edges=1
+2025-12-21 16:29:48,465 [INFO] docling_graph_explorer: dash window_state update doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 visible=1 meta_nodes=2 meta_edges=1 elements=3
+2025-12-21 16:29:48,465 [INFO] docling_graph_explorer: upload ok doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 cache=cache_miss initial_visible=1 nodes=2 edges=1
+2025-12-21 16:29:48,512 [INFO] docling_graph_explorer: dash window_state update doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 visible=1 meta_nodes=2 meta_edges=1 elements=3
+2025-12-21 16:29:48,513 [INFO] docling_graph_explorer: window update doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 visible=1 nodes=2 edges=1
+2025-12-21 16:30:39,290 [INFO] docling_graph_explorer: loaded doc hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 keys=groups,key_value_items,pages,pictures,schema_name,tables,texts,version
+2025-12-21 16:30:39,290 [INFO] docling_graph_explorer: cache hit hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 age=50.83s
+2025-12-21 16:30:39,290 [INFO] docling_graph_explorer: dash window_state update doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 visible=1 meta_nodes=2 meta_edges=1 elements=3
+2025-12-21 16:30:39,290 [INFO] docling_graph_explorer: upload ok doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 cache=cache_hit initial_visible=1 nodes=2 edges=1
+2025-12-21 16:30:39,392 [INFO] docling_graph_explorer: dash window_state update doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 visible=1 meta_nodes=2 meta_edges=1 elements=3
+2025-12-21 16:30:39,392 [INFO] docling_graph_explorer: window update doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 visible=1 nodes=2 edges=1
+2025-12-21 16:50:36,686 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:50:36,688 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:50:36,689 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:50:36,691 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:50:36,693 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:50:36,693 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:50:36,927 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:50:36,928 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:50:36,928 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:50:36,928 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 16:50:36,930 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:50:36,930 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:50:36,932 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:50:36,933 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:50:36,933 [INFO] docling_graph_explorer: dash selection set node_id=chunk-2
+2025-12-21 16:50:36,934 [INFO] docling_graph_explorer: dash selection set node_id=node-1
+2025-12-21 16:50:37,301 [INFO] docling_graph_explorer: dash asset override: cytoscape.min.js requested; returning 404
+2025-12-21 16:50:37,744 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:50:37,745 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.82s
+2025-12-21 16:50:37,745 [INFO] docling_graph_explorer: dash window_state update doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 visible=3 meta_nodes=3 meta_edges=0 elements=3
+2025-12-21 16:50:37,745 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 16:50:38,566 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:50:38,566 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:50:38,568 [INFO] docling_graph_explorer: dash window_state update doc_hash=abc visible=1 meta_nodes=1 meta_edges=1 elements=2
+2025-12-21 16:51:01,992 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:01,994 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:01,995 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:01,996 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:01,997 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:01,998 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:02,235 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:02,236 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:02,236 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:02,236 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 16:51:02,237 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:02,238 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:02,239 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:02,240 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:02,240 [INFO] docling_graph_explorer: dash selection set node_id=chunk-2
+2025-12-21 16:51:02,242 [INFO] docling_graph_explorer: dash selection set node_id=node-1
+2025-12-21 16:51:02,624 [INFO] docling_graph_explorer: dash asset override: cytoscape.min.js requested; returning 404
+2025-12-21 16:51:03,066 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:03,066 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.83s
+2025-12-21 16:51:03,066 [INFO] docling_graph_explorer: dash window_state update doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 visible=3 meta_nodes=3 meta_edges=0 elements=3
+2025-12-21 16:51:03,066 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 16:51:03,918 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:03,919 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:03,920 [INFO] docling_graph_explorer: dash window_state update doc_hash=abc visible=1 meta_nodes=1 meta_edges=1 elements=2
+2025-12-21 16:51:37,471 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:37,472 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:37,473 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:37,475 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:37,476 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:37,476 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:37,756 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:37,756 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:37,756 [INFO] docling_graph_explorer: cache store hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:37,757 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.00s
+2025-12-21 16:51:37,758 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:37,759 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:37,760 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:37,761 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:37,761 [INFO] docling_graph_explorer: dash selection set node_id=chunk-2
+2025-12-21 16:51:37,763 [INFO] docling_graph_explorer: dash selection set node_id=node-1
+2025-12-21 16:51:38,136 [INFO] docling_graph_explorer: dash asset request miss: cytoscape.min.js (available=['dash_cytoscape_extra.min.js'])
+2025-12-21 16:51:38,436 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:38,436 [INFO] docling_graph_explorer: cache hit hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 age=0.68s
+2025-12-21 16:51:38,437 [INFO] docling_graph_explorer: dash window_state update doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 visible=3 meta_nodes=3 meta_edges=0 elements=3
+2025-12-21 16:51:38,437 [INFO] docling_graph_explorer: upload ok doc_hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 cache=cache_hit initial_visible=3 nodes=3 edges=0
+2025-12-21 16:51:39,276 [INFO] docling_graph_explorer: loaded doc hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 keys=chunks,groups,texts
+2025-12-21 16:51:39,277 [INFO] docling_graph_explorer: built graph hash=c3701947cef236fa7440736ae0c4f5cf823d5819ab15be5b4e7e219a6d857068 nodes=6 edges=4
+2025-12-21 16:51:39,278 [INFO] docling_graph_explorer: dash window_state update doc_hash=abc visible=1 meta_nodes=1 meta_edges=1 elements=2
+2025-12-21 17:04:34,119 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:35,599 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:37,101 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:38,595 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:40,094 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:41,601 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:43,102 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:44,603 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:46,105 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:47,602 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:48,616 [INFO] docling_graph_explorer: dash selection set node_id=two
+2025-12-21 17:04:49,106 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:50,600 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:52,104 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:53,593 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:55,103 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:56,601 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:58,106 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:04:59,606 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:01,091 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:02,604 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:04,099 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:05,604 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:07,107 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:08,592 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:10,099 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:11,601 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:13,091 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:14,593 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:16,102 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:17,601 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:19,105 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:20,592 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:22,095 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:23,602 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:25,098 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:26,603 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:28,101 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:29,592 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:31,099 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:32,590 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:34,103 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:35,600 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:37,094 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:38,603 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:40,092 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:41,601 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:43,091 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:44,591 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:46,109 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:47,605 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:49,103 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:50,601 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:52,101 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:53,607 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:55,094 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:56,602 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:58,091 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:05:59,603 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:01,100 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:02,066 [INFO] docling_graph_explorer: dash selection set node_id=two
+2025-12-21 17:06:02,597 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:04,105 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:05,598 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:07,093 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:08,592 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:10,091 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:11,594 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:13,091 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:14,601 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:16,101 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:19,049 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:21,049 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:21,067 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:24,049 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:24,068 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:27,058 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:27,088 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:30,047 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:30,066 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:33,048 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:33,066 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:36,045 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:36,062 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:39,044 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:39,062 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:42,048 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:42,066 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:45,047 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:45,065 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:48,047 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:48,065 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:51,045 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:51,061 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:54,048 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:54,066 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:57,043 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:06:57,061 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:07:00,048 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:07:00,066 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:07:03,055 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:07:03,074 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:07:06,043 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:07:06,065 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:07:09,051 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:07:09,078 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:07:12,047 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:07:12,075 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:07:15,050 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:07:15,074 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:04,050 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:04,082 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:07,046 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:09,062 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:09,089 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:12,049 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:12,078 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:15,045 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:15,062 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:18,049 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:18,074 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:21,059 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:21,083 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:24,049 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:24,081 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:27,048 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:27,074 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:30,053 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:30,081 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:33,049 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:33,074 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:36,044 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:36,064 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:39,048 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:39,066 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:42,064 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:42,081 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:45,051 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:45,069 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:48,043 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:48,062 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:51,045 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:51,064 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:54,047 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:54,077 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:57,054 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:08:57,072 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:00,059 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:00,078 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:03,055 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:03,073 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:06,043 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:06,061 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:09,048 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:09,066 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:12,055 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:12,074 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:15,046 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:15,061 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:18,047 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:18,070 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:21,048 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:21,067 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:24,046 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:24,065 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:27,048 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:27,067 [INFO] docling_graph_explorer: dash refresh doc_hash=None visible=0 meta_nodes=0 meta_edges=0 elements=5 mode=Demo elements (fallback)
+2025-12-21 17:09:47,909 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port commit=476442f listening on 8055 (dash mounted at /dash)
+2025-12-21 17:09:47,926 [INFO] docling_graph_explorer: dash window_state update doc_hash=None visible=0 meta_nodes=None meta_edges=None elements=0
+2025-12-21 17:10:03,249 [INFO] docling_graph_explorer: loaded doc hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 keys=groups,key_value_items,pages,pictures,schema_name,tables,texts,version
+2025-12-21 17:10:03,250 [INFO] docling_graph_explorer: cache miss hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0
+2025-12-21 17:10:03,252 [INFO] docling_graph_explorer: built graph hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 nodes=2 edges=1
+2025-12-21 17:10:03,252 [INFO] docling_graph_explorer: cache store hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 nodes=2 edges=1
+2025-12-21 17:10:03,253 [INFO] docling_graph_explorer: dash window_state update doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 visible=1 meta_nodes=2 meta_edges=1 elements=3
+2025-12-21 17:10:03,253 [INFO] docling_graph_explorer: upload ok doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 cache=cache_miss initial_visible=1 nodes=2 edges=1
+2025-12-21 17:10:03,349 [INFO] docling_graph_explorer: dash window_state update doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 visible=1 meta_nodes=2 meta_edges=1 elements=3
+2025-12-21 17:10:03,350 [INFO] docling_graph_explorer: window update doc_hash=e24d8e3efedadd7e827b41967427a70f190a11f3d8d494a1cac7fa7001232da0 visible=1 nodes=2 edges=1
+2025-12-21 17:17:23,717 [INFO] docling_graph_explorer: dash asset request miss: dash_cytoscape.min.js (available=['dash_cytoscape_extra.min.js'])
+2025-12-21 18:01:28,310 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port listening on 8055 (dash mounted at /dash)
+2025-12-21 18:01:44,007 [INFO] docling_graph_explorer: dash asset request miss: dash_cytoscape.min.js (available=['dash_cytoscape_extra.min.js'])
+2025-12-21 18:04:11,823 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port listening on 8055 (dash mounted at /dash)
+2025-12-21 18:09:15,392 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port listening on 8055 (dash mounted at /dash)
+2025-12-21 18:10:01,101 [INFO] docling_graph_explorer: dash asset request miss: dash_cytoscape.min.js (available=['dash_cytoscape_extra.min.js'])
+2025-12-21 18:25:13,079 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port listening on 8055 (dash mounted at /dash)
+2025-12-21 18:40:28,337 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port listening on 8055 (dash mounted at /dash)
+2025-12-21 19:01:03,884 [INFO] docling_graph_explorer: Starting Docling Graph Explorer single-port listening on 8055 (dash mounted at /dash)

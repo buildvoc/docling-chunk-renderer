@@ -1,0 +1,47 @@
+{
+  "texts": [
+    {
+      "self_ref": "#/texts/0",
+      "text": "Intro paragraph",
+      "page_no": 1,
+      "bbox": {"x": 10, "y": 10},
+      "children": [{"self_ref": "#/texts/1"}]
+    },
+    {
+      "self_ref": "#/texts/1",
+      "text": "Body section",
+      "page_no": 1,
+      "bbox": {"x": 12, "y": 50},
+      "parent": {"self_ref": "#/texts/0"}
+    },
+    {
+      "self_ref": "#/texts/2",
+      "text": "Conclusion",
+      "page_no": 2,
+      "bbox": {"x": 8, "y": 15},
+      "parent": {"self_ref": "#/texts/1"}
+    }
+  ],
+  "chunks": [
+    {
+      "self_ref": "chunk-0",
+      "text": "Intro paragraph",
+      "page_no": 1,
+      "bbox": {"x": 10, "y": 10}
+    },
+    {
+      "self_ref": "chunk-1",
+      "text": "Body section",
+      "page_no": 1,
+      "bbox": {"x": 12, "y": 50},
+      "chunk_id": "chunk-1"
+    },
+    {
+      "self_ref": "chunk-2",
+      "text": "Conclusion",
+      "page_no": 2,
+      "bbox": {"x": 8, "y": 15}
+    }
+  ],
+  "groups": []
+}
