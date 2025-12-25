@@ -1,9 +1,21 @@
 #!/usr/bin/env python3
 """
 Gradio Docling JSON Renderer
-- Items mode: existing box rendering (sections + pictures)
-- Chunks mode: section_header-based chunks rendered as cards
-- Chunk selector: MULTI-SELECT dropdown to filter which chunk card(s) render
+
+Items mode:
+- Section boxes (orange)
+- Pictures cropped from page images (if available)
+- Picture properties (classification + description), if present in Docling JSON
+
+Chunks mode:
+- Section-based chunk builder (label == section_header)
+- Chunk cards (orange)
+- Multi-select chunk selector
+
+Annif Projects (STATIC):
+- No API calls
+- Dropdown populated from hard-coded list
+- Labels normalized to ASCII to avoid � replacement chars
 """
 
 from __future__ import annotations
@@ -12,6 +24,7 @@ import base64
 import html
 import io
 import json
+import unicodedata
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple, Union
 
@@ -23,9 +36,110 @@ except Exception:  # pragma: no cover
     Image = None  # type: ignore
 
 
-# -----------------------------
+# ============================================================
+# STATIC Annif projects (NO fetching)
+# ============================================================
+ANNIF_PROJECTS: Dict[str, List[Dict[str, Any]]] = {
+    "projects": [
+        {
+            "backend": {"backend_id": "nn_ensemble"},
+            "is_trained": True,
+            "language": "en",
+            "modification_time": "2022-10-29T10:36:34.615060+00:00",
+            "name": "NN Ensemble",
+            "project_id": "nn-ensemble-en",
+        },
+        {
+            "backend": {"backend_id": "nn_ensemble"},
+            "is_trained": True,
+            "language": "en",
+            "modification_time": "2022-11-12T09:58:38.767263+00:00",
+            "name": "NN Finite Automata (FSA)",
+            "project_id": "nn-bv-stw-ensemble-en",
+        },
+        {
+            "backend": {"backend_id": "pav"},
+            "is_trained": True,
+            "language": "en",
+            "modification_time": "2022-10-30T07:23:29.156954+00:00",
+            "name": "NN PAV Ensemble",
+            "project_id": "pav-en",
+        },
+        {
+            "backend": {"backend_id": "stwfsa"},
+            "is_trained": True,
+            "language": "en",
+            "modification_time": "2022-10-29T10:30:33.413864+00:00",
+            "name": "Finite Automata (FSA",
+            "project_id": "stwfsa-bv-en",
+        },
+        {
+            "backend": {"backend_id": "tfidf"},
+            "is_trained": True,
+            "language": "en",
+            "modification_time": "2022-12-27T18:34:40.749972+00:00",
+            "name": "TFIDF",
+            "project_id": "tfidf-en",
+        },
+        {
+            "backend": {"backend_id": "mllm"},
+            "is_trained": True,
+            "language": "en",
+            "modification_time": "2022-11-12T09:15:38.701268+00:00",
+            "name": "MLLM",
+            "project_id": "mllm-en",
+        },
+        {
+            "backend": {"backend_id": "omikuji"},
+            "is_trained": True,
+            "language": "en",
+            "modification_time": "2022-11-12T09:20:10.935459+00:00",
+            "name": "Omikuji",
+            "project_id": "omikuji-parabel-en",
+        },
+    ]
+}
+
+ANNIF_SEP = " - "  # ASCII only
+
+
+def ascii_clean(s: str) -> str:
+    """Normalize to ASCII to avoid Unicode replacement chars (�) in dropdown labels."""
+    return (
+        unicodedata.normalize("NFKD", s)
+        .encode("ascii", "ignore")
+        .decode("ascii")
+        .strip()
+    )
+
+
+def annif_list_projects_static() -> List[Dict[str, Any]]:
+    projs = ANNIF_PROJECTS.get("projects", [])
+    return projs if isinstance(projs, list) else []
+
+
+def annif_project_choices() -> List[str]:
+    out: List[str] = []
+    for p in annif_list_projects_static():
+        pid = p.get("project_id", "")
+        name = p.get("name", "")
+        if not isinstance(pid, str) or not pid.strip():
+            continue
+        pid_clean = ascii_clean(pid)
+        name_clean = ascii_clean(name) if isinstance(name, str) else ""
+        out.append(f"{pid_clean}{ANNIF_SEP}{name_clean}" if name_clean else pid_clean)
+    return out
+
+
+def annif_project_id_from_choice(choice: str) -> Optional[str]:
+    if not isinstance(choice, str) or not choice.strip():
+        return None
+    return choice.split(ANNIF_SEP, 1)[0].strip()
+
+
+# ============================================================
 # Data models
-# -----------------------------
+# ============================================================
 @dataclass
 class RenderItem:
     idx: int
@@ -44,24 +158,11 @@ class Chunk:
     item_idxs: List[int]
     page_min: Optional[int] = None
     page_max: Optional[int] = None
-    bbox_min: Optional[Dict[str, Any]] = None
-    bbox_max: Optional[Dict[str, Any]] = None
 
 
-# -----------------------------
-# Minimal logging helpers
-# -----------------------------
-def log_info(msg: str) -> None:
-    print(f"[gradio_docling_renderer] {msg}")
-
-
-def log_warn(msg: str) -> None:
-    print(f"[gradio_docling_renderer][warn] {msg}")
-
-
-# -----------------------------
-# Helpers: Docling JSON access
-# -----------------------------
+# ============================================================
+# Docling helpers
+# ============================================================
 def _ref_index(self_ref: str, prefix: str) -> Optional[int]:
     if not isinstance(self_ref, str) or not self_ref.startswith(prefix):
         return None
@@ -92,14 +193,10 @@ def _item_page_bbox(item: Dict[str, Any]) -> Tuple[Optional[int], Optional[Dict[
     return page_no, bbox
 
 
-# -----------------------------
-# Picture helpers (existing behavior)
-# -----------------------------
+# ============================================================
+# Picture cropping from embedded page image (if present)
+# ============================================================
 def crop_picture_from_page(pages: Dict[str, Any], page_no: int, bbox: Dict[str, Any]) -> Optional[str]:
-    """
-    Attempt to crop from embedded page image if available.
-    Returns a data URL (png) or None.
-    """
     if Image is None:
         return None
 
@@ -128,10 +225,8 @@ def crop_picture_from_page(pages: Dict[str, Any], page_no: int, bbox: Dict[str, 
         return None
 
     W, H = im.size
-    if max(l, r) > W * 5 or max(t, b) > H * 5:
-        return None
 
-    # Convert BOTTOMLEFT -> TOPLEFT
+    # Convert BOTTOMLEFT -> TOPLEFT-ish for simple crops
     y1 = max(0, min(H, int(H - t)))
     y2 = max(0, min(H, int(H - b)))
     x1 = max(0, min(W, int(l)))
@@ -151,6 +246,9 @@ def crop_picture_from_page(pages: Dict[str, Any], page_no: int, bbox: Dict[str, 
     return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
 
 
+# ============================================================
+# Picture properties rendering (classification + description)
+# ============================================================
 def _format_conf(v: Any) -> str:
     try:
         f = float(v)
@@ -162,11 +260,8 @@ def _format_conf(v: Any) -> str:
 def picture_properties_html(doc_json: Dict[str, Any], pic_ref: str) -> str:
     """
     Render picture classification + description if present.
-    Defensive across exporters.
+    Accepts several common keys (defensive).
     """
-    if not isinstance(doc_json, dict):
-        return ""
-
     pics = doc_json.get("pictures")
     if not isinstance(pics, list):
         return ""
@@ -185,7 +280,12 @@ def picture_properties_html(doc_json: Dict[str, Any], pic_ref: str) -> str:
 
     rows: List[str] = []
 
-    classes = meta.get("classes") or meta.get("classification") or meta.get("predictions") or meta.get("classifications")
+    classes = (
+        meta.get("classes")
+        or meta.get("classification")
+        or meta.get("predictions")
+        or meta.get("classifications")
+    )
     desc_text = meta.get("description") or meta.get("caption") or meta.get("desc")
 
     if isinstance(classes, dict):
@@ -226,9 +326,9 @@ def picture_properties_html(doc_json: Dict[str, Any], pic_ref: str) -> str:
     return "<div class='dv-props'>" + grid + desc_block + "</div>"
 
 
-# -----------------------------
+# ============================================================
 # Extraction (prefer doc_json["texts"])
-# -----------------------------
+# ============================================================
 def extract_render_items(doc_json: Any, max_items: int) -> List[RenderItem]:
     if not isinstance(doc_json, dict):
         return []
@@ -250,7 +350,16 @@ def extract_render_items(doc_json: Any, max_items: int) -> List[RenderItem]:
             if not isinstance(text, str):
                 text = ""
             page_no, bbox = _item_page_bbox(t)
-            items.append(RenderItem(idx=i, self_ref=self_ref, label=label, text=text, page_no=page_no, bbox=bbox))
+            items.append(
+                RenderItem(
+                    idx=i,
+                    self_ref=self_ref,
+                    label=label,
+                    text=text,
+                    page_no=page_no,
+                    bbox=bbox,
+                )
+            )
         return items
 
     # Fallback scan for other exports
@@ -273,14 +382,23 @@ def extract_render_items(doc_json: Any, max_items: int) -> List[RenderItem]:
             if not isinstance(text, str):
                 text = ""
             page_no, bbox = _item_page_bbox(t)
-            items.append(RenderItem(idx=len(items), self_ref=self_ref, label=label, text=text, page_no=page_no, bbox=bbox))
+            items.append(
+                RenderItem(
+                    idx=len(items),
+                    self_ref=self_ref,
+                    label=label,
+                    text=text,
+                    page_no=page_no,
+                    bbox=bbox,
+                )
+            )
 
     return items
 
 
-# -----------------------------
-# Chunking
-# -----------------------------
+# ============================================================
+# Chunking (section_header based)
+# ============================================================
 def build_section_chunks(items: List[RenderItem]) -> List[Chunk]:
     if not items:
         return []
@@ -305,8 +423,6 @@ def build_section_chunks(items: List[RenderItem]) -> List[Chunk]:
                 item_idxs=[],
                 page_min=it.page_no,
                 page_max=it.page_no,
-                bbox_min=it.bbox,
-                bbox_max=it.bbox,
             )
             continue
 
@@ -314,17 +430,14 @@ def build_section_chunks(items: List[RenderItem]) -> List[Chunk]:
             current = Chunk(chunk_id="chunk_0000", title="(preamble)", text="", item_idxs=[])
 
         current.item_idxs.append(it.idx)
-
         if it.text:
             current.text += it.text.strip() + "\n"
 
         if isinstance(it.page_no, int):
             if current.page_min is None or it.page_no < current.page_min:
                 current.page_min = it.page_no
-                current.bbox_min = it.bbox
             if current.page_max is None or it.page_no > current.page_max:
                 current.page_max = it.page_no
-                current.bbox_max = it.bbox
 
     if current is not None:
         _finalize(current)
@@ -332,9 +445,9 @@ def build_section_chunks(items: List[RenderItem]) -> List[Chunk]:
     return chunks
 
 
-# -----------------------------
+# ============================================================
 # Renderers
-# -----------------------------
+# ============================================================
 def render_boxes(doc_json: Dict[str, Any], items: List[RenderItem], pages: Dict[str, Any], show_empty_text: bool, limit: int) -> str:
     css = """
     <style>
@@ -354,10 +467,7 @@ def render_boxes(doc_json: Dict[str, Any], items: List[RenderItem], pages: Dict[
         margin:14px 0;
         background:rgba(255,140,0,0.06);
       }
-      .dv-section-title {
-        font-weight:700;
-        margin-bottom:8px;
-      }
+      .dv-section-title { font-weight:700; margin-bottom:8px; }
       .dv-imgwrap {
         background:#0b0b0b;
         color:#f4f4f4;
@@ -366,17 +476,8 @@ def render_boxes(doc_json: Dict[str, Any], items: List[RenderItem], pages: Dict[
         padding:10px 12px;
         margin:8px 0;
       }
-      .dv-imgmeta {
-        opacity:0.8;
-        font-size:12px;
-        margin-bottom:8px;
-      }
-      .dv-imgwrap img {
-        max-width:100%;
-        height:auto;
-        border-radius:8px;
-        display:block;
-      }
+      .dv-imgmeta { opacity:0.8; font-size:12px; margin-bottom:8px; }
+      .dv-imgwrap img { max-width:100%; height:auto; border-radius:8px; display:block; }
       .dv-props {
         border:1px solid #2a2a2a;
         border-radius:10px;
@@ -450,7 +551,7 @@ def render_chunk_cards(chunks: List[Chunk]) -> str:
       .dv-chunk {
         background:#0b0b0b;
         color:#f4f4f4;
-        border:2px solid #ff8c00;   /* orange boxing like sections */
+        border:2px solid #ff8c00;
         border-radius:14px;
         padding:12px 14px;
         margin:12px 0;
@@ -490,7 +591,7 @@ def render_chunk_cards(chunks: List[Chunk]) -> str:
         else:
             page_txt = f"pages: {ch.page_min}-{ch.page_max}"
 
-        #  FIXED f-string (no broken quotes)
+        # SINGLE f-string (prevents the SyntaxError you hit earlier)
         meta = f"{html.escape(ch.chunk_id)} {page_txt} items: {len(ch.item_idxs)}"
 
         parts.append("<div class='dv-chunk'>")
@@ -505,18 +606,17 @@ def render_chunk_cards(chunks: List[Chunk]) -> str:
     return "\n".join(parts)
 
 
-# -----------------------------
-# Chunk selector helpers (MULTI)
-# -----------------------------
-def _chunk_choices(chunks: List[Chunk]) -> List[str]:
-    return ["(All chunks)"] + [f"{c.chunk_id}  {c.title}" for c in chunks]
+# ============================================================
+# Chunk selector helpers (MULTI)  ASCII separator
+# ============================================================
+CHUNK_SEP = " - "  # ASCII only
 
 
-def _normalize_chunk_choice(choice: Union[str, List[str], None], choices: List[str]) -> List[str]:
-    """
-    Gradio multiselect dropdown returns List[str].
-    Keep defensive: handle str/None too.
-    """
+def chunk_choices(chunks: List[Chunk]) -> List[str]:
+    return ["(All chunks)"] + [f"{c.chunk_id}{CHUNK_SEP}{ascii_clean(c.title)}" for c in chunks]
+
+
+def normalize_chunk_choice(choice: Union[str, List[str], None], choices: List[str]) -> List[str]:
     if choice is None:
         return ["(All chunks)"]
     if isinstance(choice, str):
@@ -527,36 +627,46 @@ def _normalize_chunk_choice(choice: Union[str, List[str], None], choices: List[s
     return ["(All chunks)"]
 
 
-def _selected_chunk_ids(selected_labels: List[str]) -> Optional[set]:
-    """
-    Convert selected dropdown labels into chunk_id set.
-    If "(All chunks)" selected -> None (means no filtering).
-    """
+def selected_chunk_ids(selected_labels: List[str]) -> Optional[set]:
     if "(All chunks)" in selected_labels:
         return None
     ids = set()
     for lab in selected_labels:
-        # "chunk_0001  Title"
-        chunk_id = lab.split("", 1)[0].strip()
+        chunk_id = lab.split(CHUNK_SEP, 1)[0].strip()
         if chunk_id:
             ids.add(chunk_id)
     return ids or None
 
 
-# -----------------------------
-# Gradio callback (updated for MULTI chunk selector)
-# -----------------------------
+# ============================================================
+# Gradio callback
+# ============================================================
 def load_and_render(
     uploaded_file,
     mode: str,
+    annif_project_choice: str,
     chunk_choice: Union[str, List[str], None],
     show_empty_text: bool,
     max_items: int,
     render_limit: int,
 ):
+    # Keep dropdown stable (static choices)
+    proj_choices = annif_project_choices()
+    if proj_choices:
+        if annif_project_choice not in proj_choices:
+            annif_project_choice = proj_choices[0]
+        annif_update = gr.update(choices=proj_choices, value=annif_project_choice)
+    else:
+        annif_update = gr.update(choices=[], value=None)
+
     if uploaded_file is None:
         dd_update = gr.update(choices=["(All chunks)"], value=["(All chunks)"])
-        return "<div class='dv-box'>Upload a Docling JSON file first.</div>", {"items": 0}, dd_update
+        return (
+            "<div class='dv-box'>Upload a Docling JSON file first.</div>",
+            {"items": 0},
+            annif_update,
+            dd_update,
+        )
 
     with open(uploaded_file.name, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -568,37 +678,64 @@ def load_and_render(
     items = extract_render_items(data, int(max_items))
     chunks = build_section_chunks(items)
 
-    # Dropdown choices always updated from current chunks
-    choices = _chunk_choices(chunks)
-
-    selected = _normalize_chunk_choice(chunk_choice, choices)
-
-    # Ensure "(All chunks)" behaves sensibly:
-    # if user selects other chunks, drop "(All chunks)" automatically.
+    # Update chunk dropdown
+    choices = chunk_choices(chunks)
+    selected = normalize_chunk_choice(chunk_choice, choices)
     if "(All chunks)" in selected and len(selected) > 1:
         selected = [s for s in selected if s != "(All chunks)"]
-
     dd_update = gr.update(choices=choices, value=selected)
 
+    annif_pid = annif_project_id_from_choice(annif_project_choice)
+
     if mode == "Chunks":
-        selected_ids = _selected_chunk_ids(selected)  # None => all chunks
-        visible = [c for c in chunks if (selected_ids is None or c.chunk_id in selected_ids)]
+        want = selected_chunk_ids(selected)  # None => all
+        visible = [c for c in chunks if (want is None or c.chunk_id in want)]
         html_out = render_chunk_cards(visible)
-        return html_out, {"items": len(items), "pages": len(pages), "chunks": len(chunks), "mode": "Chunks"}, dd_update
+        return (
+            html_out,
+            {
+                "items": len(items),
+                "pages": len(pages),
+                "chunks": len(chunks),
+                "mode": "Chunks",
+                "annif_project": annif_pid,
+            },
+            annif_update,
+            dd_update,
+        )
 
     html_out = render_boxes(data, items, pages, show_empty_text, int(render_limit))
-    return html_out, {"items": len(items), "pages": len(pages), "chunks": len(chunks), "mode": "Items"}, dd_update
+    return (
+        html_out,
+        {
+            "items": len(items),
+            "pages": len(pages),
+            "chunks": len(chunks),
+            "mode": "Items",
+            "annif_project": annif_pid,
+        },
+        annif_update,
+        dd_update,
+    )
 
 
-# -----------------------------
+# ============================================================
 # UI
-# -----------------------------
+# ============================================================
 with gr.Blocks(title="Docling JSON Renderer") as demo:
     file_in = gr.File(file_types=[".json"], label="Docling JSON")
 
+    proj_choices = annif_project_choices()
+    default_proj = proj_choices[0] if proj_choices else None
+
     with gr.Row():
         mode = gr.Radio(["Items", "Chunks"], value="Items", label="Render mode")
-        #  MULTISELECT dropdown
+        annif_project = gr.Dropdown(
+            choices=proj_choices,
+            value=default_proj,
+            label="Annif project (static)",
+            info="Static project list (no API calls)  ASCII normalized",
+        )
         chunk_select = gr.Dropdown(
             choices=["(All chunks)"],
             value=["(All chunks)"],
@@ -616,8 +753,8 @@ with gr.Blocks(title="Docling JSON Renderer") as demo:
 
     btn.click(
         load_and_render,
-        [file_in, mode, chunk_select, show_empty, max_items, render_limit],
-        [html_view, stats, chunk_select],
+        [file_in, mode, annif_project, chunk_select, show_empty, max_items, render_limit],
+        [html_view, stats, annif_project, chunk_select],
     )
 
 if __name__ == "__main__":
