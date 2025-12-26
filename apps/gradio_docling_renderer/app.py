@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """
-Gradio Renderer (Docling � Annif)
+Gradio Renderer (Docling -> Annif)
 
-Update:
-1) Suggestions are rendered directly UNDER EACH CHUNK card (Chunks mode).
-2) Dark-mode confidence band color FIXED:
-   - previous selector was wrong (.dv-band-HIGH .dv-suggpill-meta) because dv-band-* is on the SAME element
-   - now uses: .dv-suggpill.dv-band-HIGH .dv-suggpill-meta (and MED/LOW)
-   - also adds a subtle background tint so its visible in Gradio dark mode
+Key behaviors:
+- Suggestions stored in Annif native format ONLY:
+  { "label":"fire doorset", "score":0.37, "notation":null, "uri":"https://..." }
 
-Suggestions remain stored in Annif native format ONLY:
-{ "label": "...", "score": 0.37, "notation": null, "uri": "..." }
+- In Chunks mode:
+  * Default: render ONLY chunks that have at least one MED/HIGH suggestion (score >= 0.40)
+  * If "Show LOW" is checked: render chunks that have ANY suggestion above MIN_SUGGEST_SCORE
+
+- Suggestions box:
+  * Not rendered at all if suggestions are null/empty OR all are filtered out (near-zero).
 """
 
 from __future__ import annotations
@@ -34,10 +35,16 @@ except Exception:  # pragma: no cover
 
 
 # ============================================================
-# Phase 0  Annif constants + logging helpers
+# Annif constants + logging
 # ============================================================
 ANNIF_BASE_URL = "https://text-analytics.buildvoc.co.uk/v1"
 ANNIF_TIMEOUT_S = 12.0
+
+# Filter "0% | LOW" noise (tune if you want more/less aggressive)
+MIN_SUGGEST_SCORE = 0.005  # 0.5%
+
+# MED threshold
+MED_SCORE_THRESHOLD = 0.40
 
 
 def log_info(msg: str) -> None:
@@ -53,7 +60,7 @@ def log_err(msg: str) -> None:
 
 
 # ============================================================
-# Phase 0  Robust JSON loader (handles trailing "Extra data")
+# Robust JSON loader (handles trailing "Extra data")
 # ============================================================
 def load_json_robust(path: str) -> Any:
     with open(path, "r", encoding="utf-8") as f:
@@ -67,7 +74,7 @@ def load_json_robust(path: str) -> Any:
 
 
 # ============================================================
-# Phase 0  Normalization helpers
+# Normalization helpers
 # ============================================================
 SEP = " - "  # ASCII separator for dropdown labels
 
@@ -113,11 +120,11 @@ class Chunk:
     item_idxs: List[int]
     page_min: Optional[int] = None
     page_max: Optional[int] = None
-    bboxes: List[Dict[str, Any]] = None  # list of bbox dicts (if available)
+    bboxes: List[Dict[str, Any]] = None
 
 
 # ============================================================
-# Phase 0  Docling parsing helpers
+# Docling parsing helpers
 # ============================================================
 def _ref_index(self_ref: str, prefix: str) -> Optional[int]:
     if not isinstance(self_ref, str) or not self_ref.startswith(prefix):
@@ -150,20 +157,16 @@ def _item_page_bbox(item: Dict[str, Any]) -> Tuple[Optional[int], Optional[Dict[
 
 
 # ============================================================
-# Phase 0  Docling -> RenderItems (FIXED: always include pictures)
+# Docling -> RenderItems (always include pictures)
 # ============================================================
 def extract_render_items(doc_json: Any, max_items: int) -> List[RenderItem]:
-    """
-    Prefer doc_json["texts"] but DO NOT early-return:
-    we also append doc_json["pictures"] as label="picture" items so pictures render.
-    """
     if not isinstance(doc_json, dict):
         return []
 
     items: List[RenderItem] = []
     max_items = int(max_items) if max_items else 0
 
-    # 1) texts
+    # texts
     texts = doc_json.get("texts")
     if isinstance(texts, list) and texts:
         for i, t in enumerate(texts):
@@ -195,7 +198,7 @@ def extract_render_items(doc_json: Any, max_items: int) -> List[RenderItem]:
                 )
             )
 
-    # 2) pictures (always append)
+    # pictures
     pics = doc_json.get("pictures")
     if isinstance(pics, list) and pics:
         for i, p in enumerate(pics):
@@ -221,10 +224,10 @@ def extract_render_items(doc_json: Any, max_items: int) -> List[RenderItem]:
                 )
             )
 
-    # 3) fallback if truly nothing
     if items:
         return items
 
+    # fallback
     for key in ("body", "furniture", "tables", "key_value_items", "form_items"):
         arr = doc_json.get(key)
         if not isinstance(arr, list):
@@ -259,7 +262,7 @@ def extract_render_items(doc_json: Any, max_items: int) -> List[RenderItem]:
 
 
 # ============================================================
-# Picture properties rendering (classification + description)
+# Picture properties (classification + description)
 # ============================================================
 def _format_conf(v: Any) -> str:
     try:
@@ -284,7 +287,6 @@ def picture_properties_html(doc_json: Dict[str, Any], pic_ref: str) -> str:
     rows: List[str] = []
     desc_text: Optional[str] = None
 
-    # Docling-native: annotations
     ann = p.get("annotations")
     if isinstance(ann, list) and ann:
         for a in ann:
@@ -310,7 +312,6 @@ def picture_properties_html(doc_json: Dict[str, Any], pic_ref: str) -> str:
                 if isinstance(t, str) and t.strip():
                     desc_text = t.strip()
 
-    # Legacy fallback: meta
     if not rows and desc_text is None:
         meta = p.get("meta")
         if not isinstance(meta, dict):
@@ -368,7 +369,7 @@ def picture_properties_html(doc_json: Dict[str, Any], pic_ref: str) -> str:
 
 
 # ============================================================
-# Picture cropping (supports uri+sizes, or base64 legacy)
+# Picture cropping (uri+sizes or base64 legacy)
 # ============================================================
 def _data_url_to_pil(data_url: str) -> Image.Image:
     _header, b64 = data_url.split(",", 1)
@@ -383,11 +384,6 @@ def _pil_to_data_url_png(im: Image.Image) -> str:
 
 
 def crop_picture_from_page(pages: Dict[str, Any], page_no: int, bbox: Dict[str, Any], pad_px: int = 2) -> Optional[str]:
-    """
-    A) page["image"]["uri"] == dataURL + page["size"] (PDF) + image["size"] (px)
-       bbox is PDF coords (bottom-left origin) -> convert to pixel coords (top-left origin)
-    B) legacy page["image"] == base64 -> best-effort bbox as pixels
-    """
     if Image is None:
         return None
     if not isinstance(pages, dict):
@@ -400,7 +396,6 @@ def crop_picture_from_page(pages: Dict[str, Any], page_no: int, bbox: Dict[str, 
         return None
 
     img_meta = page.get("image")
-    # A) dict with uri
     if isinstance(img_meta, dict):
         uri = img_meta.get("uri")
         if isinstance(uri, str) and uri.startswith("data:"):
@@ -437,7 +432,6 @@ def crop_picture_from_page(pages: Dict[str, Any], page_no: int, bbox: Dict[str, 
                 except Exception:
                     return None
 
-                # PDF bottom-left -> Pixel top-left
                 x0 = int(round((l / pdf_w) * px_w))
                 x1 = int(round((r / pdf_w) * px_w))
                 y0 = int(round(((pdf_h - t) / pdf_h) * px_h))
@@ -456,25 +450,6 @@ def crop_picture_from_page(pages: Dict[str, Any], page_no: int, bbox: Dict[str, 
 
                 return _pil_to_data_url_png(im.crop((x0, y0, x1, y1)))
 
-            # fallback: treat bbox as pixels
-            try:
-                l = float(bbox.get("l"))
-                t = float(bbox.get("t"))
-                r = float(bbox.get("r"))
-                b = float(bbox.get("b"))
-            except Exception:
-                return None
-
-            W, H = im.size
-            left = max(0, min(W, int(min(l, r)) - pad_px))
-            right = max(0, min(W, int(max(l, r)) + pad_px))
-            top = max(0, min(H, int(min(t, b)) - pad_px))
-            bottom = max(0, min(H, int(max(t, b)) + pad_px))
-            if right - left < 2 or bottom - top < 2:
-                return None
-            return _pil_to_data_url_png(im.crop((left, top, right, bottom)))
-
-    # B) legacy: base64 string in page["image"]
     if isinstance(img_meta, str) and img_meta:
         try:
             raw = base64.b64decode(img_meta)
@@ -504,14 +479,9 @@ def crop_picture_from_page(pages: Dict[str, Any], page_no: int, bbox: Dict[str, 
 
 
 # ============================================================
-# Phase 1  Chunking (section_header based)
+# Chunking (section_header based)
 # ============================================================
 def build_section_chunks(items: List[RenderItem]) -> List[Chunk]:
-    """
-    New chunk begins at every item where label == "section_header".
-    Chunk text is concatenation of subsequent non-header items' text.
-    Metadata: page range, bboxes collected.
-    """
     if not items:
         return []
 
@@ -544,7 +514,6 @@ def build_section_chunks(items: List[RenderItem]) -> List[Chunk]:
             current = Chunk(chunk_id="chunk_0000", title="(preamble)", text="", item_idxs=[], bboxes=[])
 
         current.item_idxs.append(it.idx)
-
         if it.text:
             current.text += it.text.strip() + "\n"
 
@@ -602,7 +571,7 @@ def first_selected_chunk_id(selected_labels: List[str]) -> Optional[str]:
 
 
 # ============================================================
-# Phase 3  Annif projects (with caching)
+# Annif projects (cached)
 # ============================================================
 _PROJECT_CACHE: Dict[str, Any] = {"ts": 0.0, "projects": []}
 _PROJECT_CACHE_TTL_S = 300.0
@@ -653,7 +622,7 @@ def annif_project_id_from_choice(choice: Optional[str]) -> Optional[str]:
 
 
 # ============================================================
-# Phase 4  Suggestions (Annif native format ONLY) + confidence band (display only)
+# Suggestions (Annif native format ONLY)
 # ============================================================
 def confidence_band(score: float) -> str:
     if score >= 0.75:
@@ -664,10 +633,6 @@ def confidence_band(score: float) -> str:
 
 
 def annif_suggest(project_id: str, text: str, limit: int, threshold: float) -> List[Dict[str, Any]]:
-    """
-    Returns suggestions in Annif native format ONLY:
-      {label, score, notation, uri}
-    """
     if not project_id or not text or not text.strip():
         return []
 
@@ -694,10 +659,13 @@ def annif_suggest(project_id: str, text: str, limit: int, threshold: float) -> L
         label = it.get("label")
         score = it.get("score")
         if isinstance(label, str) and isinstance(score, (int, float)):
+            sc = float(score)
+            if sc < MIN_SUGGEST_SCORE:
+                continue
             out.append(
                 {
                     "label": label.strip(),
-                    "score": float(score),
+                    "score": sc,
                     "notation": it.get("notation"),
                     "uri": it.get("uri"),
                 }
@@ -738,16 +706,43 @@ def suggestion_label_choices_for_chunk(suggestions_view: Dict[str, Any], chunk_i
         if not isinstance(s, dict):
             continue
         lab = s.get("label")
-        if isinstance(lab, str) and lab.strip():
+        sc = s.get("score")
+        if isinstance(lab, str) and lab.strip() and isinstance(sc, (int, float)) and float(sc) >= MIN_SUGGEST_SCORE:
             out.append(lab.strip())
     return out
 
 
+def chunk_passes_filter(suggs: Any, show_low: bool) -> bool:
+    """
+    Chunk render gating (Chunks mode only):
+    - show_low=False: need at least one MED/HIGH (score >= 0.40)
+    - show_low=True: need at least one suggestion >= MIN_SUGGEST_SCORE
+    """
+    if not isinstance(suggs, list):
+        return False
+
+    if show_low:
+        for s in suggs:
+            if not isinstance(s, dict):
+                continue
+            sc = s.get("score")
+            if isinstance(sc, (int, float)) and float(sc) >= MIN_SUGGEST_SCORE:
+                return True
+        return False
+
+    for s in suggs:
+        if not isinstance(s, dict):
+            continue
+        sc = s.get("score")
+        if isinstance(sc, (int, float)) and float(sc) >= MED_SCORE_THRESHOLD:
+            return True
+    return False
+
+
 # ============================================================
-# Phase 5  Human curation state
+# Human curation state
 # ============================================================
 CuratedState = Dict[str, List[Dict[str, Any]]]
-# Each entry: {"label": str, "uri": str|None, "notation": any, "source": "annif"|"manual"}
 
 
 def _ensure_state(s: Any) -> CuratedState:
@@ -801,9 +796,7 @@ def accept_many_to_state(
     suggestions_view: Dict[str, Any],
 ) -> CuratedState:
     state = _ensure_state(state)
-    if not chunk_id or not suggestion_labels:
-        return state
-    if not isinstance(suggestions_view, dict):
+    if not chunk_id or not suggestion_labels or not isinstance(suggestions_view, dict):
         return state
 
     block = suggestions_view.get(chunk_id)
@@ -823,15 +816,19 @@ def accept_many_to_state(
         if not isinstance(s, dict):
             continue
         lab = _norm_label(s.get("label"))
+        sc = s.get("score")
         if lab not in want:
             continue
-        entry = {
-            "label": lab,
-            "uri": _norm_label(s.get("uri")) or None,
-            "notation": s.get("notation"),
-            "source": "annif",
-        }
-        cur.append(entry)
+        if isinstance(sc, (int, float)) and float(sc) < MIN_SUGGEST_SCORE:
+            continue
+        cur.append(
+            {
+                "label": lab,
+                "uri": _norm_label(s.get("uri")) or None,
+                "notation": s.get("notation"),
+                "source": "annif",
+            }
+        )
 
     state[chunk_id] = _dedupe_entries(cur)
     return state
@@ -844,9 +841,8 @@ def add_manual_to_state(state: CuratedState, chunk_id: Optional[str], manual_lab
     lab = _norm_label(manual_label)
     if not lab:
         return state
-    entry = {"label": lab, "uri": None, "notation": None, "source": "manual"}
     cur = curated_for_chunk(state, chunk_id)
-    cur.append(entry)
+    cur.append({"label": lab, "uri": None, "notation": None, "source": "manual"})
     state[chunk_id] = _dedupe_entries(cur)
     return state
 
@@ -870,7 +866,7 @@ def remove_curated_from_state(state: CuratedState, chunk_id: Optional[str], sele
 
 
 # ============================================================
-# Rendering CSS + helpers
+# Rendering CSS + helpers (dark-mode safe pills)
 # ============================================================
 CSS = """
 <style>
@@ -974,7 +970,6 @@ CSS = """
     background:rgba(0,0,0,0.25);
   }
 
-  /* Suggestions under each chunk (dark pills, no bar) */
   .dv-suggbox {
     border:1px solid #2a2a2a;
     border-radius:12px;
@@ -998,6 +993,7 @@ CSS = """
     flex-wrap:wrap;
     gap:8px;
   }
+
   .dv-suggpill {
     display:inline-flex;
     align-items:center;
@@ -1010,32 +1006,38 @@ CSS = """
     font-size:12px;
     line-height:1;
   }
+
   .dv-suggpill:hover {
     border-color: rgba(255,140,0,0.70);
     background: rgba(255,140,0,0.12);
   }
+
   .dv-suggpill-label { font-weight:650; opacity:0.95; }
+
   .dv-suggpill-meta {
-    opacity:0.80;
-    font-weight:700;
+    opacity:0.90;
+    font-weight:800;
     padding:3px 7px;
     border-radius:999px;
     border:1px solid rgba(255,255,255,0.14);
     background:rgba(0,0,0,0.28);
+    color:#ffffff;
   }
 
-  /* FIX: dv-band-* class is on the SAME element as dv-suggpill */
   .dv-suggpill.dv-band-HIGH .dv-suggpill-meta {
     border-color: rgba( 70, 200, 120, 0.75 );
-    background: rgba( 70, 200, 120, 0.12 );
+    background:   rgba( 70, 200, 120, 0.12 );
+    color: #DFF5E8;
   }
   .dv-suggpill.dv-band-MED .dv-suggpill-meta {
     border-color: rgba(255, 200,  80, 0.75 );
-    background: rgba(255, 200,  80, 0.12 );
+    background:   rgba(255, 200,  80, 0.12 );
+    color: #FFF3CF;
   }
   .dv-suggpill.dv-band-LOW .dv-suggpill-meta {
     border-color: rgba(220,  90,  90, 0.75 );
-    background: rgba(220,  90,  90, 0.12 );
+    background:   rgba(220,  90,  90, 0.12 );
+    color: #FDE2E2;
   }
 </style>
 """
@@ -1067,21 +1069,27 @@ def _curated_badges_html(curated_entries: List[Dict[str, Any]]) -> str:
 
 def _suggestions_pills_block(suggestions_view: Dict[str, Any], chunk_id: str) -> str:
     """
-    Render suggestions UNDER a given chunk card.
+    Render nothing if:
+    - suggestions null/empty
+    - OR all suggestions filtered out (near-zero)
     """
-    block = suggestions_view.get(chunk_id) if isinstance(suggestions_view, dict) else None
-    suggs = block.get("suggestions") if isinstance(block, dict) else None
+    if not isinstance(suggestions_view, dict):
+        return ""
+
+    block = suggestions_view.get(chunk_id)
+    if not isinstance(block, dict):
+        return ""
+
+    suggs = block.get("suggestions")
+    if not isinstance(suggs, list) or len(suggs) == 0:
+        return ""
 
     parts: List[str] = []
     parts.append("<div class='dv-suggbox'>")
     parts.append("<div class='dv-sugghead'>Suggestions <small>(Annif)</small></div>")
-
-    if not isinstance(suggs, list) or not suggs:
-        parts.append("<div class='dv-curated-empty'>(no suggestions)</div>")
-        parts.append("</div>")
-        return "".join(parts)
-
     parts.append("<div class='dv-suggpillwrap'>")
+
+    any_rendered = False
     for s in suggs[:80]:
         if not isinstance(s, dict):
             continue
@@ -1090,12 +1098,16 @@ def _suggestions_pills_block(suggestions_view: Dict[str, Any], chunk_id: str) ->
         if not isinstance(label, str) or not label.strip() or not isinstance(score, (int, float)):
             continue
 
-        pct = int(round(float(score) * 100))
+        sc = float(score)
+        if sc < MIN_SUGGEST_SCORE:
+            continue
+
+        pct = int(round(sc * 100))
         pct = max(0, min(100, pct))
-        band = confidence_band(float(score))
+        band = confidence_band(sc)
 
         label_esc = html.escape(label.strip())
-        meta_esc = html.escape(f"{pct}% � {band}")
+        meta_esc = html.escape(f"{pct}% | {band}")
 
         parts.append(
             f"<span class='dv-suggpill dv-band-{band}'>"
@@ -1103,8 +1115,10 @@ def _suggestions_pills_block(suggestions_view: Dict[str, Any], chunk_id: str) ->
             f"<span class='dv-suggpill-meta'>{meta_esc}</span>"
             f"</span>"
         )
+        any_rendered = True
+
     parts.append("</div></div>")
-    return "".join(parts)
+    return "".join(parts) if any_rendered else ""
 
 
 def render_items_view(
@@ -1127,7 +1141,6 @@ def render_items_view(
             parts.append(f"<div class='dv-section-title'>{html.escape(it.text.strip() or '(untitled section)')}</div>")
             continue
 
-        # IMPORTANT: render pictures BEFORE empty-text filter
         if it.label == "picture" and isinstance(it.self_ref, str) and it.self_ref.startswith("#/pictures/"):
             data_url = None
             if it.page_no is not None and isinstance(it.bbox, dict):
@@ -1162,8 +1175,9 @@ def render_items_view(
 def render_chunks_view(chunks: List[Chunk], curated_state: CuratedState, suggestions_view: Dict[str, Any]) -> str:
     curated_state = _ensure_state(curated_state)
     parts = [CSS, "<div>"]
+
     if not chunks:
-        parts.append("<div class='dv-box'>No chunks found (no section_header items).</div></div>")
+        parts.append("<div class='dv-box'>No chunks to render (filtered out).</div></div>")
         return "\n".join(parts)
 
     for ch in chunks:
@@ -1183,17 +1197,16 @@ def render_chunks_view(chunks: List[Chunk], curated_state: CuratedState, suggest
         parts.append(f"<div class='dv-chunk-meta'>{meta}</div>")
         parts.append("</div>")
 
-        # chunk text
         parts.append(f"<div class='dv-chunk-body'>{html.escape(ch.text or '')}</div>")
 
-        # curated subjects
         parts.append("<div class='dv-curated'>")
         parts.append("<div class='dv-curated-title'>Curated subjects</div>")
         parts.append(_curated_badges_html(curated_entries))
         parts.append("</div>")
 
-        # NEW: suggestions directly under each chunk
-        parts.append(_suggestions_pills_block(suggestions_view, ch.chunk_id))
+        sugg_html = _suggestions_pills_block(suggestions_view, ch.chunk_id)
+        if sugg_html:
+            parts.append(sugg_html)
 
         parts.append("</div>")
 
@@ -1214,6 +1227,7 @@ def load_and_render(
     render_limit: int,
     suggest_limit: int,
     suggest_threshold: float,
+    show_low: bool,  # NEW
     curated_state: CuratedState,
 ):
     curated_state = _ensure_state(curated_state)
@@ -1261,19 +1275,35 @@ def load_and_render(
 
     annif_pid = annif_project_id_from_choice(annif_project_choice)
 
-    # Suggestions are generated in Chunks mode (and rendered under each chunk)
+    # "All chunks" handling
+    sel_ids = selected_chunk_id_list(selected)  # None => All
+    if sel_ids is not None and len(chunks) > 0 and len(sel_ids) >= len(chunks):
+        sel_ids = None  # effectively all
+
+    want_ids = set(sel_ids or [])
+    visible = chunks if sel_ids is None else [c for c in chunks if c.chunk_id in want_ids]
+
     suggestions_view: Dict[str, Any] = {}
     if mode == "Chunks" and annif_pid:
-        sel_ids = selected_chunk_id_list(selected)  # None => all chunks
         suggestions_view = suggest_for_chunks(
             project_id=annif_pid,
-            chunks=chunks,
-            selected_ids=sel_ids,
+            chunks=visible,
+            selected_ids=None,
             limit=clamp_int(suggest_limit, 1, 50, 10),
             threshold=clamp_float(suggest_threshold, 0.0, 1.0, 0.0),
         )
 
-    # Phase 5 panel state (still based on selected chunk)
+        # NEW: render only chunks that pass filter (MED/HIGH by default; LOW optional)
+        filtered: List[Chunk] = []
+        for ch in visible:
+            block = suggestions_view.get(ch.chunk_id)
+            if not isinstance(block, dict):
+                continue
+            suggs = block.get("suggestions")
+            if chunk_passes_filter(suggs, show_low=bool(show_low)):
+                filtered.append(ch)
+        visible = filtered
+
     cur_chunk_id = first_selected_chunk_id(selected)
     sugg_labels = suggestion_label_choices_for_chunk(suggestions_view, cur_chunk_id)
     sugg_dd_update = gr.update(choices=sugg_labels, value=[])
@@ -1281,41 +1311,23 @@ def load_and_render(
     rm_choices = curated_choices_for_chunk(curated_state, cur_chunk_id)
     rm_dd_update = gr.update(choices=rm_choices, value=(rm_choices[0] if rm_choices else None))
 
-    pic_items = [it for it in items if it.label == "picture"]
-    pages_have_image_uri = sum(
-        1
-        for v in pages.values()
-        if isinstance(v, dict)
-        and isinstance(v.get("image"), dict)
-        and isinstance(v["image"].get("uri"), str)
-        and v["image"]["uri"].startswith("data:")
-    )
-    pages_have_legacy_image_b64 = sum(
-        1
-        for v in pages.values()
-        if isinstance(v, dict) and isinstance(v.get("image"), str) and len(v.get("image", "")) > 50
-    )
-
     stats = {
         "items_total": len(items),
         "chunks_total": len(chunks),
+        "visible_chunks": len(visible),
         "mode": mode,
-        "picture_items": len(pic_items),
-        "pages_total": len(pages),
-        "pages_have_image_uri": pages_have_image_uri,
-        "pages_have_legacy_image_b64": pages_have_legacy_image_b64,
         "annif_base_url": ANNIF_BASE_URL,
         "annif_project": annif_pid,
         "suggest_limit": clamp_int(suggest_limit, 1, 50, 10),
         "suggest_threshold": clamp_float(suggest_threshold, 0.0, 1.0, 0.0),
+        "show_low": bool(show_low),
+        "min_suggest_score": MIN_SUGGEST_SCORE,
+        "med_score_threshold": MED_SCORE_THRESHOLD,
         "curated_chunks": len(curated_state),
         "selected_chunk": cur_chunk_id,
     }
 
     if mode == "Chunks":
-        sel_ids = selected_chunk_id_list(selected)
-        want_ids = set(sel_ids or [])
-        visible = chunks if sel_ids is None else [c for c in chunks if c.chunk_id in want_ids]
         html_out = render_chunks_view(visible, curated_state, suggestions_view)
         return (
             html_out,
@@ -1396,7 +1408,7 @@ def on_remove_curated(curated_state: CuratedState, chunk_choice, curated_item: s
 # ============================================================
 # UI
 # ============================================================
-with gr.Blocks(title="Gradio Renderer (Docling � Annif)") as demo:
+with gr.Blocks(title="Gradio Renderer (Docling -> Annif)") as demo:
     file_in = gr.File(file_types=[".json"], label="Docling JSON")
     curated_state = gr.State({})
 
@@ -1426,6 +1438,13 @@ with gr.Blocks(title="Gradio Renderer (Docling � Annif)") as demo:
     with gr.Row():
         suggest_limit = gr.Slider(1, 50, value=10, step=1, label="Annif suggest limit")
         suggest_threshold = gr.Slider(0.0, 1.0, value=0.0, step=0.01, label="Annif suggest threshold")
+
+    # NEW: checkbox to include LOW chunks
+    show_low = gr.Checkbox(
+        False,
+        label="Show LOW",
+        info="If checked, include chunks with LOW-confidence Annif suggestions",
+    )
 
     btn = gr.Button("Render")
 
@@ -1465,6 +1484,7 @@ with gr.Blocks(title="Gradio Renderer (Docling � Annif)") as demo:
             render_limit,
             suggest_limit,
             suggest_threshold,
+            show_low,        # NEW
             curated_state,
         ],
         [
