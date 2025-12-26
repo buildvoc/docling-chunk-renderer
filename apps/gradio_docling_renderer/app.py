@@ -2,47 +2,15 @@
 """
 Gradio Renderer (Docling � Annif)
 
-Implements incremental roadmap (Phases 05) in one file:
+Update:
+1) Suggestions are rendered directly UNDER EACH CHUNK card (Chunks mode).
+2) Dark-mode confidence band color FIXED:
+   - previous selector was wrong (.dv-band-HIGH .dv-suggpill-meta) because dv-band-* is on the SAME element
+   - now uses: .dv-suggpill.dv-band-HIGH .dv-suggpill-meta (and MED/LOW)
+   - also adds a subtle background tint so its visible in Gradio dark mode
 
-Phase 0  Preparation
-- Annif API constants
-- minimal logging helpers
-- isolate Docling parsing logic (no UI change)
-
-Phase 1  Chunking
-- section-based chunk builder (label == section_header)
-- chunk metadata (id, title, text, page range, bbox list)
-- chunk statistics in UI
-
-Phase 2  Chunk UI
-- render mode toggle (Items / Chunks)
-- chunk cards
-- chunk selector (multi)
-
-Phase 3  Annif Projects
-- list/get project helpers
-- project dropdown
-- cache project list
-
-Phase 4  Suggest
-- suggest client wrapper (formData)
-- limit/threshold controls
-- suggest selected chunk
-- suggest all chunks
-- graceful 404/503 handling
-
-Phase 5  Human Curation
-- curated subject state per chunk
-- accept suggestions
-- manual subject entry
-- remove subject
-
-Picture fixes:
-- pictures are ALWAYS included as items (even if doc_json["texts"] exists)
-- pictures are rendered BEFORE empty-text filter
-- crop supports pages[*].image.uri + size mapping and legacy pages[*].image base64
--  FIXED: picture properties read from Docling pictures[*].annotations (classification/description)
-  with fallback to legacy pictures[*].meta
+Suggestions remain stored in Annif native format ONLY:
+{ "label": "...", "score": 0.37, "notation": null, "uri": "..." }
 """
 
 from __future__ import annotations
@@ -292,8 +260,6 @@ def extract_render_items(doc_json: Any, max_items: int) -> List[RenderItem]:
 
 # ============================================================
 # Picture properties rendering (classification + description)
-#  FIX: parse Docling pictures[*].annotations (kind=classification/description)
-#     fallback to legacy pictures[*].meta
 # ============================================================
 def _format_conf(v: Any) -> str:
     try:
@@ -318,10 +284,9 @@ def picture_properties_html(doc_json: Dict[str, Any], pic_ref: str) -> str:
     rows: List[str] = []
     desc_text: Optional[str] = None
 
-    # --- Docling-native: annotations ---
+    # Docling-native: annotations
     ann = p.get("annotations")
     if isinstance(ann, list) and ann:
-        # classification
         for a in ann:
             if not isinstance(a, dict):
                 continue
@@ -345,7 +310,7 @@ def picture_properties_html(doc_json: Dict[str, Any], pic_ref: str) -> str:
                 if isinstance(t, str) and t.strip():
                     desc_text = t.strip()
 
-    # --- Legacy fallback: meta ---
+    # Legacy fallback: meta
     if not rows and desc_text is None:
         meta = p.get("meta")
         if not isinstance(meta, dict):
@@ -688,9 +653,21 @@ def annif_project_id_from_choice(choice: Optional[str]) -> Optional[str]:
 
 
 # ============================================================
-# Phase 4  Suggest wrapper (formData) + graceful errors
+# Phase 4  Suggestions (Annif native format ONLY) + confidence band (display only)
 # ============================================================
+def confidence_band(score: float) -> str:
+    if score >= 0.75:
+        return "HIGH"
+    if score >= 0.40:
+        return "MED"
+    return "LOW"
+
+
 def annif_suggest(project_id: str, text: str, limit: int, threshold: float) -> List[Dict[str, Any]]:
+    """
+    Returns suggestions in Annif native format ONLY:
+      {label, score, notation, uri}
+    """
     if not project_id or not text or not text.strip():
         return []
 
@@ -719,7 +696,7 @@ def annif_suggest(project_id: str, text: str, limit: int, threshold: float) -> L
         if isinstance(label, str) and isinstance(score, (int, float)):
             out.append(
                 {
-                    "label": label,
+                    "label": label.strip(),
                     "score": float(score),
                     "notation": it.get("notation"),
                     "uri": it.get("uri"),
@@ -817,14 +794,14 @@ def curated_choices_for_chunk(state: CuratedState, chunk_id: Optional[str]) -> L
     return out
 
 
-def accept_suggestion_to_state(
+def accept_many_to_state(
     state: CuratedState,
     chunk_id: Optional[str],
-    suggestion_label: Optional[str],
+    suggestion_labels: List[str],
     suggestions_view: Dict[str, Any],
 ) -> CuratedState:
     state = _ensure_state(state)
-    if not chunk_id or not suggestion_label:
+    if not chunk_id or not suggestion_labels:
         return state
     if not isinstance(suggestions_view, dict):
         return state
@@ -836,25 +813,26 @@ def accept_suggestion_to_state(
     if not isinstance(suggs, list):
         return state
 
-    chosen = None
+    want = {_norm_label(v) for v in suggestion_labels if _norm_label(v)}
+    if not want:
+        return state
+
+    cur = curated_for_chunk(state, chunk_id)
+
     for s in suggs:
         if not isinstance(s, dict):
             continue
-        if _norm_label(s.get("label")) == _norm_label(suggestion_label):
-            chosen = s
-            break
-    if chosen is None:
-        return state
+        lab = _norm_label(s.get("label"))
+        if lab not in want:
+            continue
+        entry = {
+            "label": lab,
+            "uri": _norm_label(s.get("uri")) or None,
+            "notation": s.get("notation"),
+            "source": "annif",
+        }
+        cur.append(entry)
 
-    entry = {
-        "label": _norm_label(chosen.get("label")),
-        "uri": _norm_label(chosen.get("uri")) or None,
-        "notation": chosen.get("notation"),
-        "source": "annif",
-    }
-
-    cur = curated_for_chunk(state, chunk_id)
-    cur.append(entry)
     state[chunk_id] = _dedupe_entries(cur)
     return state
 
@@ -892,7 +870,7 @@ def remove_curated_from_state(state: CuratedState, chunk_id: Optional[str], sele
 
 
 # ============================================================
-# Phase 2  Rendering: Items view + Chunks view
+# Rendering CSS + helpers
 # ============================================================
 CSS = """
 <style>
@@ -995,6 +973,70 @@ CSS = """
     border:1px solid #2a2a2a;
     background:rgba(0,0,0,0.25);
   }
+
+  /* Suggestions under each chunk (dark pills, no bar) */
+  .dv-suggbox {
+    border:1px solid #2a2a2a;
+    border-radius:12px;
+    padding:10px 12px;
+    background:rgba(255,255,255,0.02);
+    margin:10px 0 0 0;
+  }
+  .dv-sugghead {
+    font-weight:800;
+    opacity:0.92;
+    margin-bottom:8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+  }
+  .dv-sugghead small { font-weight:500; opacity:0.75; }
+
+  .dv-suggpillwrap {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .dv-suggpill {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 10px;
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:999px;
+    background:rgba(0,0,0,0.40);
+    color:#f4f4f4;
+    font-size:12px;
+    line-height:1;
+  }
+  .dv-suggpill:hover {
+    border-color: rgba(255,140,0,0.70);
+    background: rgba(255,140,0,0.12);
+  }
+  .dv-suggpill-label { font-weight:650; opacity:0.95; }
+  .dv-suggpill-meta {
+    opacity:0.80;
+    font-weight:700;
+    padding:3px 7px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,0.14);
+    background:rgba(0,0,0,0.28);
+  }
+
+  /* FIX: dv-band-* class is on the SAME element as dv-suggpill */
+  .dv-suggpill.dv-band-HIGH .dv-suggpill-meta {
+    border-color: rgba( 70, 200, 120, 0.75 );
+    background: rgba( 70, 200, 120, 0.12 );
+  }
+  .dv-suggpill.dv-band-MED .dv-suggpill-meta {
+    border-color: rgba(255, 200,  80, 0.75 );
+    background: rgba(255, 200,  80, 0.12 );
+  }
+  .dv-suggpill.dv-band-LOW .dv-suggpill-meta {
+    border-color: rgba(220,  90,  90, 0.75 );
+    background: rgba(220,  90,  90, 0.12 );
+  }
 </style>
 """
 
@@ -1023,7 +1065,55 @@ def _curated_badges_html(curated_entries: List[Dict[str, Any]]) -> str:
     return "<div class='dv-pillwrap'>" + "".join(bits) + "</div>"
 
 
-def render_items_view(doc_json: Dict[str, Any], items: List[RenderItem], pages: Dict[str, Any], show_empty_text: bool, limit: int) -> str:
+def _suggestions_pills_block(suggestions_view: Dict[str, Any], chunk_id: str) -> str:
+    """
+    Render suggestions UNDER a given chunk card.
+    """
+    block = suggestions_view.get(chunk_id) if isinstance(suggestions_view, dict) else None
+    suggs = block.get("suggestions") if isinstance(block, dict) else None
+
+    parts: List[str] = []
+    parts.append("<div class='dv-suggbox'>")
+    parts.append("<div class='dv-sugghead'>Suggestions <small>(Annif)</small></div>")
+
+    if not isinstance(suggs, list) or not suggs:
+        parts.append("<div class='dv-curated-empty'>(no suggestions)</div>")
+        parts.append("</div>")
+        return "".join(parts)
+
+    parts.append("<div class='dv-suggpillwrap'>")
+    for s in suggs[:80]:
+        if not isinstance(s, dict):
+            continue
+        label = s.get("label")
+        score = s.get("score")
+        if not isinstance(label, str) or not label.strip() or not isinstance(score, (int, float)):
+            continue
+
+        pct = int(round(float(score) * 100))
+        pct = max(0, min(100, pct))
+        band = confidence_band(float(score))
+
+        label_esc = html.escape(label.strip())
+        meta_esc = html.escape(f"{pct}% � {band}")
+
+        parts.append(
+            f"<span class='dv-suggpill dv-band-{band}'>"
+            f"<span class='dv-suggpill-label'>{label_esc}</span>"
+            f"<span class='dv-suggpill-meta'>{meta_esc}</span>"
+            f"</span>"
+        )
+    parts.append("</div></div>")
+    return "".join(parts)
+
+
+def render_items_view(
+    doc_json: Dict[str, Any],
+    items: List[RenderItem],
+    pages: Dict[str, Any],
+    show_empty_text: bool,
+    limit: int,
+) -> str:
     parts = [CSS, "<div>"]
     section_open = False
     lim = max(0, int(limit or 0))
@@ -1069,7 +1159,7 @@ def render_items_view(doc_json: Dict[str, Any], items: List[RenderItem], pages: 
     return "\n".join(parts)
 
 
-def render_chunks_view(chunks: List[Chunk], curated_state: CuratedState) -> str:
+def render_chunks_view(chunks: List[Chunk], curated_state: CuratedState, suggestions_view: Dict[str, Any]) -> str:
     curated_state = _ensure_state(curated_state)
     parts = [CSS, "<div>"]
     if not chunks:
@@ -1093,12 +1183,18 @@ def render_chunks_view(chunks: List[Chunk], curated_state: CuratedState) -> str:
         parts.append(f"<div class='dv-chunk-meta'>{meta}</div>")
         parts.append("</div>")
 
+        # chunk text
+        parts.append(f"<div class='dv-chunk-body'>{html.escape(ch.text or '')}</div>")
+
+        # curated subjects
         parts.append("<div class='dv-curated'>")
         parts.append("<div class='dv-curated-title'>Curated subjects</div>")
         parts.append(_curated_badges_html(curated_entries))
         parts.append("</div>")
 
-        parts.append(f"<div class='dv-chunk-body'>{html.escape(ch.text or '')}</div>")
+        # NEW: suggestions directly under each chunk
+        parts.append(_suggestions_pills_block(suggestions_view, ch.chunk_id))
+
         parts.append("</div>")
 
     parts.append("</div>")
@@ -1122,7 +1218,6 @@ def load_and_render(
 ):
     curated_state = _ensure_state(curated_state)
 
-    # Projects dropdown
     proj_choices = annif_project_choices()
     if proj_choices:
         if annif_project_choice not in proj_choices:
@@ -1133,7 +1228,7 @@ def load_and_render(
 
     if uploaded_file is None:
         dd_update = gr.update(choices=["(All chunks)"], value=["(All chunks)"])
-        sugg_dd_update = gr.update(choices=[], value=None)
+        sugg_dd_update = gr.update(choices=[], value=[])
         rm_dd_update = gr.update(choices=[], value=None)
         return (
             "<div class='dv-box'>Upload a Docling JSON file first.</div>",
@@ -1155,19 +1250,18 @@ def load_and_render(
     if not isinstance(pages, dict):
         pages = {}
 
-    # Phase 0 parsing
     items = extract_render_items(data, clamp_int(max_items, 10, 100000, 2000))
-
-    # Phase 1 chunking
     chunks = build_section_chunks(items)
+
     choices = chunk_choices(chunks)
     selected = normalize_multi_choice(chunk_choice, choices)
     if "(All chunks)" in selected and len(selected) > 1:
         selected = [s for s in selected if s != "(All chunks)"]
     dd_update = gr.update(choices=choices, value=selected)
 
-    # Phase 4 suggest
     annif_pid = annif_project_id_from_choice(annif_project_choice)
+
+    # Suggestions are generated in Chunks mode (and rendered under each chunk)
     suggestions_view: Dict[str, Any] = {}
     if mode == "Chunks" and annif_pid:
         sel_ids = selected_chunk_id_list(selected)  # None => all chunks
@@ -1179,15 +1273,14 @@ def load_and_render(
             threshold=clamp_float(suggest_threshold, 0.0, 1.0, 0.0),
         )
 
-    # Phase 5 panel state
+    # Phase 5 panel state (still based on selected chunk)
     cur_chunk_id = first_selected_chunk_id(selected)
     sugg_labels = suggestion_label_choices_for_chunk(suggestions_view, cur_chunk_id)
-    sugg_dd_update = gr.update(choices=sugg_labels, value=(sugg_labels[0] if sugg_labels else None))
+    sugg_dd_update = gr.update(choices=sugg_labels, value=[])
 
     rm_choices = curated_choices_for_chunk(curated_state, cur_chunk_id)
     rm_dd_update = gr.update(choices=rm_choices, value=(rm_choices[0] if rm_choices else None))
 
-    # Debug stats
     pic_items = [it for it in items if it.label == "picture"]
     pages_have_image_uri = sum(
         1
@@ -1198,33 +1291,32 @@ def load_and_render(
         and v["image"]["uri"].startswith("data:")
     )
     pages_have_legacy_image_b64 = sum(
-        1 for v in pages.values()
+        1
+        for v in pages.values()
         if isinstance(v, dict) and isinstance(v.get("image"), str) and len(v.get("image", "")) > 50
     )
 
     stats = {
-        # Phase 1 stats
         "items_total": len(items),
         "chunks_total": len(chunks),
         "mode": mode,
-        # picture diagnostics
         "picture_items": len(pic_items),
         "pages_total": len(pages),
         "pages_have_image_uri": pages_have_image_uri,
         "pages_have_legacy_image_b64": pages_have_legacy_image_b64,
-        # Annif config
         "annif_base_url": ANNIF_BASE_URL,
         "annif_project": annif_pid,
         "suggest_limit": clamp_int(suggest_limit, 1, 50, 10),
         "suggest_threshold": clamp_float(suggest_threshold, 0.0, 1.0, 0.0),
-        # Curation
         "curated_chunks": len(curated_state),
+        "selected_chunk": cur_chunk_id,
     }
 
     if mode == "Chunks":
-        want_ids = set(selected_chunk_id_list(selected) or [])
-        visible = chunks if selected_chunk_id_list(selected) is None else [c for c in chunks if c.chunk_id in want_ids]
-        html_out = render_chunks_view(visible, curated_state)
+        sel_ids = selected_chunk_id_list(selected)
+        want_ids = set(sel_ids or [])
+        visible = chunks if sel_ids is None else [c for c in chunks if c.chunk_id in want_ids]
+        html_out = render_chunks_view(visible, curated_state, suggestions_view)
         return (
             html_out,
             stats,
@@ -1266,10 +1358,15 @@ def _selected_chunk_for_actions(chunk_choice: Union[str, List[str], None]) -> Op
     return first_selected_chunk_id(selected)
 
 
-def on_accept_suggestion(curated_state: CuratedState, chunk_choice, suggestion_label, suggestions_view):
+def on_accept_selected(curated_state: CuratedState, chunk_choice, suggestion_labels, suggestions_view):
     curated_state = _ensure_state(curated_state)
     chunk_id = _selected_chunk_for_actions(chunk_choice)
-    curated_state = accept_suggestion_to_state(curated_state, chunk_id, suggestion_label, suggestions_view)
+
+    vals: List[str] = []
+    if isinstance(suggestion_labels, list):
+        vals = [v for v in suggestion_labels if isinstance(v, str) and v.strip()]
+
+    curated_state = accept_many_to_state(curated_state, chunk_id, vals, suggestions_view)
 
     rm_choices = curated_choices_for_chunk(curated_state, chunk_id)
     rm_dd_update = gr.update(choices=rm_choices, value=(rm_choices[0] if rm_choices else None))
@@ -1297,11 +1394,10 @@ def on_remove_curated(curated_state: CuratedState, chunk_choice, curated_item: s
 
 
 # ============================================================
-# UI (Phases 25)
+# UI
 # ============================================================
 with gr.Blocks(title="Gradio Renderer (Docling � Annif)") as demo:
     file_in = gr.File(file_types=[".json"], label="Docling JSON")
-
     curated_state = gr.State({})
 
     proj_choices = annif_project_choices()
@@ -1335,15 +1431,20 @@ with gr.Blocks(title="Gradio Renderer (Docling � Annif)") as demo:
 
     html_view = gr.HTML()
     stats = gr.JSON(label="Stats")
-    suggestions_view = gr.JSON(label="Annif suggestions (selected/all chunks)")
+    suggestions_view = gr.JSON(label="Annif suggestions (chunk map)")
 
-    with gr.Accordion("Human curation (per chunk)", open=True):
+    with gr.Accordion("Human curation (selected chunk)", open=True):
         with gr.Row():
-            suggestion_pick = gr.Dropdown(choices=[], value=None, label="Pick Annif suggestion (selected chunk)")
-            accept_btn = gr.Button("Accept suggestion")
+            suggestion_pick = gr.Dropdown(
+                choices=[],
+                value=[],
+                multiselect=True,
+                label="Pick Annif suggestion(s) (selected chunk)",
+            )
+            accept_btn = gr.Button("Accept selected")
 
         with gr.Row():
-            manual_in = gr.Textbox(label="Manual subject entry", placeholder="e.g. sanitary appliance")
+            manual_in = gr.Textbox(label="Manual subject entry", placeholder="e.g. fire doorset")
             manual_btn = gr.Button("Add manual subject")
 
         with gr.Row():
@@ -1380,7 +1481,7 @@ with gr.Blocks(title="Gradio Renderer (Docling � Annif)") as demo:
     )
 
     accept_btn.click(
-        on_accept_suggestion,
+        on_accept_selected,
         [curated_state, chunk_select, suggestion_pick, suggestions_view],
         [curated_state, curated_view, curated_pick],
     )
